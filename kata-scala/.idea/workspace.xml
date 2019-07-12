@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="658eb61a-7835-4fb7-9116-ab49b59bcc58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../kata-java/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-java/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-java/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-java/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-java/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-java/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-java/kata-java.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-java/src/dojo/Hello.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-java/src/kata/Hello.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-javascript/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/dojo/Hello.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kata-clojure/src/kata/hello.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-java/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-java/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Hello.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/kata/Hello.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -300,12 +289,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562914647405</updated>
-      <workItem from="1562914649605" duration="1545000" />
+      <workItem from="1562914649605" duration="1744000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1545000" />
+    <option name="totallyTimeSpent" value="1744000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
