@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05914a3b-a19f-4ea1-bba6-35d44c6ac9df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../kata-clojure/src/kata/hello.clj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kata-clojure/.idea/ClojureProjectResolveSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ClojureProjectResolveSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-clojure/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-clojure/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-clojure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-clojure/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kata-scala/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-scala/.idea/workspace.xml" afterDir="false" />
@@ -37,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/src/kata/Hello.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="e#78#79#0" expanded="true" />
                 <element signature="e#121#122#0" expanded="true" />
@@ -67,9 +71,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="714" />
-    <option name="height" value="834" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -260,12 +263,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562917466749</updated>
-      <workItem from="1562917468198" duration="749000" />
+      <workItem from="1562917468198" duration="1133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="749000" />
+    <option name="totallyTimeSpent" value="1133000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -330,7 +333,7 @@
     <entry file="file://$PROJECT_DIR$/src/kata/Hello.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="e#78#79#0" expanded="true" />
             <element signature="e#121#122#0" expanded="true" />

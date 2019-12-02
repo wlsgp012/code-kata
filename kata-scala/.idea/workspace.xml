@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="658eb61a-7835-4fb7-9116-ab49b59bcc58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../kata-clojure/src/kata/hello.clj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kata-clojure/.idea/ClojureProjectResolveSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kata-java/.idea/ClojureProjectResolveSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-clojure/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-clojure/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-clojure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-clojure/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-java/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-java/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kata-java/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-java/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -31,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/kata/Hello.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="1" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="5" selection-end-column="1" />
+            <state relative-caret-position="90">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -289,12 +293,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562914647405</updated>
-      <workItem from="1562914649605" duration="1744000" />
+      <workItem from="1562914649605" duration="1807000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1744000" />
+    <option name="totallyTimeSpent" value="1807000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -304,15 +308,15 @@
       <window_info id="UI Designer" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Capture Tool" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Build" weight="0.32961586" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32961586" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32961586" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" visible="true" weight="0.32961586" />
+      <window_info anchor="bottom" id="Version Control" weight="0.32961586" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -362,8 +366,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/kata/Hello.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="1" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="5" selection-end-column="1" />
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>

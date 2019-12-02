@@ -1,12 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="GradleLocalSettings">
-    <option name="projectSyncType">
-      <map>
-        <entry key="$PROJECT_DIR$/../../books-fp-in-scala" value="PREVIEW" />
-        <entry key="$PROJECT_DIR$/../../shopping-server2" value="PREVIEW" />
-        <entry key="$PROJECT_DIR$/../../vendor" value="PREVIEW" />
-      </map>
+  <component name="ChangeListManager">
+    <list default="true" id="e216304d-1d1c-4eb9-a4a1-8fe067c76564" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/ClojureProjectResolveSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dojo/duplicate_a_seq.clj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kata-java/.idea/ClojureProjectResolveSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-java/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-java/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-java/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-java/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kata-scala/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-scala/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Clojure Namespace" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/kata-clojure.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/sbt.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Leiningen__clojure_complete_0_2_5.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Leiningen__nrepl_0_6_0.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Leiningen__org_clojure_clojure_1_10_0.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Leiningen__org_clojure_core_specs_alpha_0_2_44.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Leiningen__org_clojure_spec_alpha_0_2_176.xml" />
+      </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
@@ -14,6 +59,8 @@
     <option name="width" value="714" />
     <option name="height" value="834" />
   </component>
+  <component name="ProjectId" id="1UQWdjZA0ewBkWPyFXXPZnRw6OJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -23,7 +70,24 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
-  <component name="RunManager" selected="Clojure Application.dojo.hello">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/dojo" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Clojure Application.duplicate_a_seq">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -45,18 +109,45 @@
       <setting name="workingDir" value="" />
       <setting name="profiles" value="" />
       <setting name="aliases" value="" />
+      <setting name="fixLineNumbers" value="false" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="ClojureREPL" factoryName="Remote" activateToolWindowBeforeRun="false">
       <setting name="host" value="" />
       <setting name="port" value="0" />
-      <setting name="replType" value="0" />
+      <setting name="replType" value="NREPL" />
+      <setting name="configType" value="SPECIFY" />
+      <setting name="fixLineNumbers" value="false" />
       <module name="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dojo.duplicate-a-seq" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="kata-clojure" />
+      <setting name="path" value="$PROJECT_DIR$/src/dojo/duplicate_a_seq.clj" />
+      <setting name="namespace" value="" />
+      <setting name="execution" value="INTELLIJ" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/dojo" />
       <method v="2" />
     </configuration>
     <configuration name="dojo.hello" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
       <module name="kata-clojure" />
       <setting name="path" value="$PROJECT_DIR$/src/dojo/hello.clj" />
+      <setting name="namespace" value="" />
+      <setting name="execution" value="INTELLIJ" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/dojo" />
+      <method v="2" />
+    </configuration>
+    <configuration name="duplicate_a_seq" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="kata-clojure" />
+      <setting name="path" value="$PROJECT_DIR$/src/dojo/duplicate_a_seq.clj" />
       <setting name="namespace" value="" />
       <setting name="execution" value="INTELLIJ" />
       <setting name="profiles" value="" />
@@ -117,6 +208,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Clojure Application.duplicate_a_seq" />
+        <item itemvalue="Clojure Application.dojo.duplicate-a-seq" />
         <item itemvalue="Clojure Application.dojo.hello" />
         <item itemvalue="Clojure Application.hello (1)" />
         <item itemvalue="Clojure Application.hello" />
@@ -130,8 +223,34 @@
       </map>
     </option>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e216304d-1d1c-4eb9-a4a1-8fe067c76564" name="Default Changelist" comment="" />
+      <created>1562918340527</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1562918340527</updated>
+      <workItem from="1562918342085" duration="285000" />
+      <workItem from="1575289389885" duration="2369000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="masterDetails">
     <states>
