@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e216304d-1d1c-4eb9-a4a1-8fe067c76564" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ClojureProjectResolveSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dojo/duplicate_a_seq.clj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kata-java/.idea/ClojureProjectResolveSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dojo/problems_in_4clojure/compress_seq.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kata-java/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-java/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kata-java/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-java/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-javascript/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kata-scala/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kata-scala/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kata-clojure.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kata-clojure.iml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,40 +47,35 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="714" />
-    <option name="height" value="834" />
-  </component>
   <component name="ProjectId" id="1UQWdjZA0ewBkWPyFXXPZnRw6OJ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="cursive.last.file.extension./Users/user/development/source/projects/code-kata/kata-clojure/src" value="clj" />
     <property name="cursive.last.file.extension./development/source/projects/code-kata/kata-clojure/src" value="clj" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/dojo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/dojo" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Clojure Application.duplicate_a_seq">
+  <component name="RunManager" selected="Clojure Application.compress_seq">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -121,16 +109,16 @@
       <module name="" />
       <method v="2" />
     </configuration>
-    <configuration name="dojo.duplicate-a-seq" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+    <configuration name="compress_seq" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
       <module name="kata-clojure" />
-      <setting name="path" value="$PROJECT_DIR$/src/dojo/duplicate_a_seq.clj" />
+      <setting name="path" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure/compress_seq.clj" />
       <setting name="namespace" value="" />
       <setting name="execution" value="INTELLIJ" />
       <setting name="profiles" value="" />
       <setting name="aliases" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$/src/dojo" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
       <method v="2" />
     </configuration>
     <configuration name="dojo.hello" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
@@ -208,11 +196,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Clojure Application.duplicate_a_seq" />
-        <item itemvalue="Clojure Application.dojo.duplicate-a-seq" />
-        <item itemvalue="Clojure Application.dojo.hello" />
-        <item itemvalue="Clojure Application.hello (1)" />
-        <item itemvalue="Clojure Application.hello" />
+        <item itemvalue="Clojure Application.compress_seq" />
       </list>
     </recent_temporary>
   </component>
@@ -221,6 +205,18 @@
       <map>
         <entry key="$PROJECT_DIR$/../../books-fp-in-scala" value="PREVIEW" />
       </map>
+    </option>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
     </option>
   </component>
   <component name="SvnConfiguration">
@@ -234,7 +230,10 @@
       <option name="presentableId" value="Default" />
       <updated>1562918340527</updated>
       <workItem from="1562918342085" duration="285000" />
-      <workItem from="1575289389885" duration="2369000" />
+      <workItem from="1575289389885" duration="2688000" />
+      <workItem from="1575436807089" duration="128000" />
+      <workItem from="1575436966973" duration="1935000" />
+      <workItem from="1575502810679" duration="1120000" />
     </task>
     <servers />
   </component>
@@ -246,11 +245,39 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1398" height="237" key="GridCell.Tab.0.bottom" timestamp="1575539165412">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1575539165412" />
+    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.23.1440.833@0.23.1440.833" timestamp="1575502541296" />
+    <state width="1398" height="237" key="GridCell.Tab.0.center" timestamp="1575539165411">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="237" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1575539165411" />
+    <state width="1398" height="237" key="GridCell.Tab.0.center/0.23.1440.833@0.23.1440.833" timestamp="1575502541270" />
+    <state width="1398" height="237" key="GridCell.Tab.0.left" timestamp="1575539165409">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="237" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1575539165409" />
+    <state width="1398" height="237" key="GridCell.Tab.0.left/0.23.1440.833@0.23.1440.833" timestamp="1575502541268" />
+    <state width="1398" height="237" key="GridCell.Tab.0.right" timestamp="1575539165411">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="237" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1575539165411" />
+    <state width="1398" height="237" key="GridCell.Tab.0.right/0.23.1440.833@0.23.1440.833" timestamp="1575502541291" />
+    <state x="221" y="89" key="SettingsEditor" timestamp="1575436935543">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1575436935543" />
   </component>
   <component name="masterDetails">
     <states>
