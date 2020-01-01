@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e216304d-1d1c-4eb9-a4a1-8fe067c76564" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dojo/problems_in_4clojure/compress_seq.clj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dojo/problems_in_4clojure/drop_every_nth_item_41.clj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dojo/problems_in_4clojure/replicate_a_sequence_33.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kata-clojure.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kata-clojure.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +75,7 @@
       <recent name="$PROJECT_DIR$/src/dojo" />
     </key>
   </component>
-  <component name="RunManager" selected="Clojure Application.compress_seq">
+  <component name="RunManager" selected="Clojure Application.replicate_a_sequence_33">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -121,52 +121,52 @@
       <setting name="workDir" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
       <method v="2" />
     </configuration>
-    <configuration name="dojo.hello" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+    <configuration name="dojo.problems-in-4clojure.drop-every-nth-item-41" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
       <module name="kata-clojure" />
-      <setting name="path" value="$PROJECT_DIR$/src/dojo/hello.clj" />
+      <setting name="path" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure/drop_every_nth_item_41.clj" />
       <setting name="namespace" value="" />
       <setting name="execution" value="INTELLIJ" />
       <setting name="profiles" value="" />
       <setting name="aliases" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$/src/dojo" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
       <method v="2" />
     </configuration>
-    <configuration name="duplicate_a_seq" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+    <configuration name="dojo.problems-in-4clojure.replicate-a-sequence-33" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
       <module name="kata-clojure" />
-      <setting name="path" value="$PROJECT_DIR$/src/dojo/duplicate_a_seq.clj" />
+      <setting name="path" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure/replicate_a_sequence_33.clj" />
       <setting name="namespace" value="" />
       <setting name="execution" value="INTELLIJ" />
       <setting name="profiles" value="" />
       <setting name="aliases" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$/src/dojo" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
       <method v="2" />
     </configuration>
-    <configuration name="hello (1)" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+    <configuration name="drop_every_nth_item_41" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
       <module name="kata-clojure" />
-      <setting name="path" value="$PROJECT_DIR$/src/dojo/hello.clj" />
+      <setting name="path" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure/drop_every_nth_item_41.clj" />
       <setting name="namespace" value="" />
       <setting name="execution" value="INTELLIJ" />
       <setting name="profiles" value="" />
       <setting name="aliases" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$/src/dojo" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
       <method v="2" />
     </configuration>
-    <configuration name="hello" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+    <configuration name="replicate_a_sequence_33" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
       <module name="kata-clojure" />
-      <setting name="path" value="$PROJECT_DIR$/src/kata/hello.clj" />
+      <setting name="path" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure/replicate_a_sequence_33.clj" />
       <setting name="namespace" value="" />
       <setting name="execution" value="INTELLIJ" />
       <setting name="profiles" value="" />
       <setting name="aliases" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$/src/kata" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -196,6 +196,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Clojure Application.replicate_a_sequence_33" />
+        <item itemvalue="Clojure Application.dojo.problems-in-4clojure.replicate-a-sequence-33" />
+        <item itemvalue="Clojure Application.drop_every_nth_item_41" />
+        <item itemvalue="Clojure Application.dojo.problems-in-4clojure.drop-every-nth-item-41" />
         <item itemvalue="Clojure Application.compress_seq" />
       </list>
     </recent_temporary>
@@ -233,7 +237,9 @@
       <workItem from="1575289389885" duration="2688000" />
       <workItem from="1575436807089" duration="128000" />
       <workItem from="1575436966973" duration="1935000" />
-      <workItem from="1575502810679" duration="1315000" />
+      <workItem from="1575502810679" duration="2261000" />
+      <workItem from="1577676352030" duration="209000" />
+      <workItem from="1577840300239" duration="1248000" />
     </task>
     <servers />
   </component>
@@ -254,25 +260,25 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="237" key="GridCell.Tab.0.bottom" timestamp="1575539871270">
+    <state width="1398" height="237" key="GridCell.Tab.0.bottom" timestamp="1577842625569">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1575539871270" />
+    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1577842625569" />
     <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.23.1440.833@0.23.1440.833" timestamp="1575502541296" />
-    <state width="1398" height="237" key="GridCell.Tab.0.center" timestamp="1575539871268">
+    <state width="1398" height="237" key="GridCell.Tab.0.center" timestamp="1577842625568">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1575539871268" />
+    <state width="1398" height="237" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1577842625568" />
     <state width="1398" height="237" key="GridCell.Tab.0.center/0.23.1440.833@0.23.1440.833" timestamp="1575502541270" />
-    <state width="1398" height="237" key="GridCell.Tab.0.left" timestamp="1575539871267">
+    <state width="1398" height="237" key="GridCell.Tab.0.left" timestamp="1577842625567">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1575539871267" />
+    <state width="1398" height="237" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1577842625567" />
     <state width="1398" height="237" key="GridCell.Tab.0.left/0.23.1440.833@0.23.1440.833" timestamp="1575502541268" />
-    <state width="1398" height="237" key="GridCell.Tab.0.right" timestamp="1575539871269">
+    <state width="1398" height="237" key="GridCell.Tab.0.right" timestamp="1577842625568">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1575539871269" />
+    <state width="1398" height="237" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1577842625568" />
     <state width="1398" height="237" key="GridCell.Tab.0.right/0.23.1440.833@0.23.1440.833" timestamp="1575502541291" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1575436935543">
       <screen x="0" y="0" width="1440" height="900" />
