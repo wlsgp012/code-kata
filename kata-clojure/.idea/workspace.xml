@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e216304d-1d1c-4eb9-a4a1-8fe067c76564" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dojo/problems_in_4clojure/drop_every_nth_item_41.clj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dojo/problems_in_4clojure/replicate_a_sequence_33.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -13,6 +11,9 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
@@ -53,7 +54,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -89,9 +89,9 @@
       </method>
     </configuration>
     <configuration default="true" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
+      <setting name="displayName" value="" />
       <setting name="replType" value="NREPL" />
       <setting name="execution" value="LEININGEN" />
-      <module name="" />
       <setting name="jvmArgs" value="" />
       <setting name="parameters" value="" />
       <setting name="workingDir" value="" />
@@ -101,12 +101,14 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="ClojureREPL" factoryName="Remote" activateToolWindowBeforeRun="false">
+      <setting name="displayName" value="" />
       <setting name="host" value="" />
       <setting name="port" value="0" />
       <setting name="replType" value="NREPL" />
       <setting name="configType" value="SPECIFY" />
+      <setting name="replPortFileType" value="STANDARD" />
+      <setting name="customPortFile" value="" />
       <setting name="fixLineNumbers" value="false" />
-      <module name="" />
       <method v="2" />
     </configuration>
     <configuration name="compress_seq" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
@@ -204,13 +206,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SbtLocalSettings">
-    <option name="projectSyncType">
-      <map>
-        <entry key="$PROJECT_DIR$/../../books-fp-in-scala" value="PREVIEW" />
-      </map>
-    </option>
-  </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
       <list>
@@ -251,13 +246,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1398" height="237" key="GridCell.Tab.0.bottom" timestamp="1577842625569">
