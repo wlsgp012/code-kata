@@ -30,3 +30,20 @@
      (my-map fp (rest list)))))
 (my-map (fn [x] (+ x 1)) '(1 2 3))
 
+;; p.74
+
+(reduce choose-bigger '(4 7 2 10))
+
+(count (filter (fn [x] (< x 5)) '(4 7 2 10)))
+
+(defn factorial [n]
+  (if (= 1 n)
+    1
+    (* n (factorial (dec n)))))
+
+(defn factorial' [x]
+  (loop [n x prod 1]
+    (if (= 1 n)
+      prod
+      (recur (dec n) (* prod n)))))
+

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e216304d-1d1c-4eb9-a4a1-8fe067c76564" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dojo/fp-stroll/practice.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/dojo/fp_stroll/practice.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dojo/hello.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/dojo/hello.clj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +77,7 @@
       <recent name="$PROJECT_DIR$/src/dojo" />
     </key>
   </component>
-  <component name="RunManager" selected="Clojure Application.replicate_a_sequence_33">
+  <component name="RunManager" selected="Clojure Application.dojo.fp-stroll.lazy (2)">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -84,6 +86,19 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,45 +126,45 @@
       <setting name="fixLineNumbers" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="compress_seq" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+    <configuration name="dojo.fp-stroll.lazy (1)" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
       <module name="kata-clojure" />
-      <setting name="path" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure/compress_seq.clj" />
-      <setting name="namespace" value="" />
+      <setting name="path" value="" />
+      <setting name="namespace" value="dojo.fp-stroll.lazy" />
       <setting name="execution" value="INTELLIJ" />
       <setting name="profiles" value="" />
       <setting name="aliases" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
+      <setting name="workDir" value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="dojo.problems-in-4clojure.drop-every-nth-item-41" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+    <configuration name="dojo.fp-stroll.lazy (2)" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
       <module name="kata-clojure" />
-      <setting name="path" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure/drop_every_nth_item_41.clj" />
+      <setting name="path" value="" />
+      <setting name="namespace" value="dojo.fp-stroll.lazy" />
+      <setting name="execution" value="INTELLIJ" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dojo.fp-stroll.lazy" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="kata-clojure" />
+      <setting name="path" value="$PROJECT_DIR$/src/dojo/fp_stroll/lazy.clj" />
       <setting name="namespace" value="" />
       <setting name="execution" value="INTELLIJ" />
       <setting name="profiles" value="" />
       <setting name="aliases" value="" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/dojo/fp_stroll" />
       <method v="2" />
     </configuration>
     <configuration name="dojo.problems-in-4clojure.replicate-a-sequence-33" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
       <module name="kata-clojure" />
       <setting name="path" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure/replicate_a_sequence_33.clj" />
-      <setting name="namespace" value="" />
-      <setting name="execution" value="INTELLIJ" />
-      <setting name="profiles" value="" />
-      <setting name="aliases" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure" />
-      <method v="2" />
-    </configuration>
-    <configuration name="drop_every_nth_item_41" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
-      <module name="kata-clojure" />
-      <setting name="path" value="$PROJECT_DIR$/src/dojo/problems_in_4clojure/drop_every_nth_item_41.clj" />
       <setting name="namespace" value="" />
       <setting name="execution" value="INTELLIJ" />
       <setting name="profiles" value="" />
@@ -198,11 +213,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Clojure Application.dojo.fp-stroll.lazy (2)" />
+        <item itemvalue="Clojure Application.dojo.fp-stroll.lazy (1)" />
+        <item itemvalue="Clojure Application.dojo.fp-stroll.lazy" />
         <item itemvalue="Clojure Application.replicate_a_sequence_33" />
         <item itemvalue="Clojure Application.dojo.problems-in-4clojure.replicate-a-sequence-33" />
-        <item itemvalue="Clojure Application.drop_every_nth_item_41" />
-        <item itemvalue="Clojure Application.dojo.problems-in-4clojure.drop-every-nth-item-41" />
-        <item itemvalue="Clojure Application.compress_seq" />
       </list>
     </recent_temporary>
   </component>
@@ -218,6 +233,7 @@
       </list>
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -235,11 +251,13 @@
       <workItem from="1575502810679" duration="2261000" />
       <workItem from="1577676352030" duration="209000" />
       <workItem from="1577840300239" duration="1248000" />
+      <workItem from="1620300612434" duration="400000" />
+      <workItem from="1620725142791" duration="2455000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -252,32 +270,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1398" height="237" key="GridCell.Tab.0.bottom" timestamp="1577842625569">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1577842625569" />
-    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.23.1440.833@0.23.1440.833" timestamp="1575502541296" />
-    <state width="1398" height="237" key="GridCell.Tab.0.center" timestamp="1577842625568">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1577842625568" />
-    <state width="1398" height="237" key="GridCell.Tab.0.center/0.23.1440.833@0.23.1440.833" timestamp="1575502541270" />
-    <state width="1398" height="237" key="GridCell.Tab.0.left" timestamp="1577842625567">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1577842625567" />
-    <state width="1398" height="237" key="GridCell.Tab.0.left/0.23.1440.833@0.23.1440.833" timestamp="1575502541268" />
-    <state width="1398" height="237" key="GridCell.Tab.0.right" timestamp="1577842625568">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1577842625568" />
-    <state width="1398" height="237" key="GridCell.Tab.0.right/0.23.1440.833@0.23.1440.833" timestamp="1575502541291" />
-    <state x="221" y="89" key="SettingsEditor" timestamp="1575436935543">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1575436935543" />
   </component>
   <component name="masterDetails">
     <states>
