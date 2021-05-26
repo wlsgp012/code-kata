@@ -30,7 +30,7 @@
     (infinite-word word-list))))
 
 (defn makeBig []
-  (with-open [w (clojure.java.io/writer "Bigfile.txt")]
+  (with-open [w (clojure.java.io/writer "./Bigfile.txt")]
     (doseq [word (take 20000000 (infinite-word word-list))]
            (.write w (str word "\n")))))
 
@@ -46,3 +46,19 @@
 (def notlazylist
   (doseq [elem '(1 2 3)]
     (doitslow elem)))
+
+(defn iamgrut []
+  (Thread/sleep 3000)
+  (println "Hi")
+  "I'm grut")
+
+(defn i-will-promise-you [] (promise))
+
+(def his-promise (i-will-promise-you))
+
+
+(defn set-interval [callback ms ntimes]
+  (future
+    (dotimes [i ntimes]
+      (Thread/sleep ms)
+      (callback))))
