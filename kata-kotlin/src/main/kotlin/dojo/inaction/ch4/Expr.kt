@@ -12,5 +12,8 @@ fun eval(e: Expr): Int =
     }
 
 fun main() {
-    println(eval(Sum(Num(1), Num(4))))
+//    println(eval(Sum(Num(1), Num(4))))
+    val strings = listOf("a", "b", "c")
+    println("%s/%s/%s".format(strings.toTypedArray()))
+
 }
