@@ -1,4 +1,4 @@
-package dojo.inaction.corutine
+package dojo.inaction.coroutine
 
 import kotlin.coroutines.*
 import kotlin.coroutines.intrinsics.COROUTINE_SUSPENDED
@@ -14,7 +14,9 @@ interface GeneratorBuilder<in T, R> {
     suspend fun yieldAll(generator: Generator<T, R>, param: R)
 }
 
-internal class GeneratorCoroutine<T, R> : Generator<T, R>, GeneratorBuilder<T, R>,
+internal class GeneratorCoroutine<T, R> :
+    Generator<T, R>,
+    GeneratorBuilder<T, R>,
     Continuation<Unit> {
     lateinit var nextStep: (R) -> Unit
     private var lastValue: T? = null
@@ -51,8 +53,6 @@ internal class GeneratorCoroutine<T, R> : Generator<T, R>, GeneratorBuilder<T, R
             .onSuccess { lastValue = null }
             .onFailure { lastException = it }
     }
-
-
 }
 
 fun <T, R> generate(block: suspend GeneratorBuilder<T, R>.(R) -> Unit): Generator<T, R> {
@@ -62,7 +62,7 @@ fun <T, R> generate(block: suspend GeneratorBuilder<T, R>.(R) -> Unit): Generato
     return coroutine
 }
 
-fun idMaker () = generate<Int, Unit> {
+fun idMaker() = generate<Int, Unit> {
     var index = 0
     while (index < 3)
         yield(index++)

@@ -1,4 +1,4 @@
-package dojo.inaction.corutine
+package dojo.inaction.coroutine
 
 import kotlinx.coroutines.*
 import java.time.ZonedDateTime
@@ -18,7 +18,7 @@ fun launchInGlobalScope() {
 
 fun launchInGlobalScopeWithE(error: Boolean) {
     println("before with $error")
-    CoroutineScope(Dispatchers.Unconfined).launch {
+    CoroutineScope(Dispatchers.Main).launch {
         log("coroutine started with $error")
         Thread.sleep(1000L)
         if (error) throw RuntimeException("ssssss")
@@ -120,11 +120,11 @@ fun suspendExample() {
 
 fun main() {
     log("main() started")
-    try {
+//    try {
         launchInGlobalScopeWithE(true)
-    } catch (e: Exception) {
-        println("@#@#@#@#@#@#@#@#@#@#@#@#@#")
-    }
+//    } catch (e: Exception) {
+//        println("@#@#@#@#@#@#@#@#@#@#@#@#@#")
+//    }
     launchInGlobalScopeWithE(false)
 //    runBlockingExample()
 //    yieldExample()
