@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.compress-seq)
+(ns dojo.problems-in-4clojure.compress-seq-30)
 ;http://www.4clojure.com/problem/30
 
 (defn sol [col]
