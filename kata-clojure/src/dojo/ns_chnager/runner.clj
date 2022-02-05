@@ -40,7 +40,7 @@
 (defn post->pre
   [name sep]
   (let [splited (s/split name (re-pattern sep))]
-    (str (padding (last splited) 3) sep (apply str (drop-last splited)))))
+    (str (padding (last splited) 3) sep (s/join sep (drop-last splited)))))
 
 (defn change-name
   ([fullname] (change-name fullname "."))
@@ -60,11 +60,29 @@
 
 
 ;; ns change
+(defn read-file
+  [file]
+  (s/split (slurp (.getAbsolutePath file)) (re-pattern (System/lineSeparator))))
 
+(defn remove-par
+  [line]
+  (s/replace line #"[()]" ""))
 
+(defn change-ns-name
+  [nsline]
+  (let [separated (separate-filename (remove-par nsline))
+        last-ns (post->pre (last separated) "-")]
+    (str "(" (apply str (drop-last separated)) last-ns ")")))
+
+(defn write-modified-ns
+  [file]
+  (let [code-as-string (read-file file)
+        changed (change-ns-name (first code-as-string))]
+    (spit (.getAbsolutePath file) (s/join (System/lineSeparator) (conj (rest code-as-string) changed)))))
 
 (defn doit
   [path]
   (let [files (get-files path)]
     (doseq [f files]
+      (write-modified-ns f)
       (rename-file f))))
