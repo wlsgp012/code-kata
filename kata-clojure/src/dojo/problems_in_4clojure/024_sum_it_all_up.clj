@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.sum-it-all-up-24)
+(ns dojo.problems-in-4clojure.024-sum-it-all-up)
 ;; https://4clojure.oxal.org/#/problem/24
 
 (def answer #(reduce + %))

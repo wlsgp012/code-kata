@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.count-a-sequence-22)
+(ns dojo.problems-in-4clojure.022-count-a-sequence)
 ;; https://4clojure.oxal.org/#/problem/22
 
 (defn answer

@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.replicate-a-sequence-33)
+(ns dojo.problems-in-4clojure.033-replicate-a-sequence)
 ; http://www.4clojure.com/problem/33
 
 (defn sol [coll n] (mapcat #(repeat n %) coll))

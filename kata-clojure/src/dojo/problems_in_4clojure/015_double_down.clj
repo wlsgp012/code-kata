@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.double-down-15)
+(ns dojo.problems-in-4clojure.015-double-down)
 ;; https://4clojure.oxal.org/#/problem/15
 
 (def answer #(* 2 %))

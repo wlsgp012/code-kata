@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.find-the-odd-numbers-25)
+(ns dojo.problems-in-4clojure.025-find-the-odd-numbers)
 ;; https://4clojure.oxal.org/#/problem/25
 
 (defn answer [l]

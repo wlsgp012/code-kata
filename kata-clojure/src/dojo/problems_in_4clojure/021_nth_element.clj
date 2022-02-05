@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.nth-element-21)
+(ns dojo.problems-in-4clojure.021-nth-element)
 ;; https://4clojure.oxal.org/#/problem/21
 
 (def answer #(first (drop %2 %1)))

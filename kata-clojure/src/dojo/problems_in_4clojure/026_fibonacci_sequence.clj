@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.fibonacci-sequence-26)
+(ns dojo.problems-in-4clojure.026-fibonacci-sequence)
 ;; https://4clojure.oxal.org/#/problem/26
 
 (defn fibo [x]

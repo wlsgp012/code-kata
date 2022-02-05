@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.last-element-19)
+(ns dojo.problems-in-4clojure.019-last-element)
 ;; https://4clojure.oxal.org/#/problem/19
 
 (defn answer

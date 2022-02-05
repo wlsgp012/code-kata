@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.drop-every-nth-item-41)
+(ns dojo.problems-in-4clojure.041-drop-every-nth-item)
 ; http://www.4clojure.com/problem/41
 
 (defn sol [col n] (flatten (partition-all (- n 1) n col)))

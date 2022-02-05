@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.conj-on-lists-5)
+(ns dojo.problems-in-4clojure.005-conj-on-lists)
 ;; https://4clojure.oxal.org/#/problem/5
 
 

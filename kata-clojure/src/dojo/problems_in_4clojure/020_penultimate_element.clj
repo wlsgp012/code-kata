@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.penultimate-element-20)
+(ns dojo.problems-in-4clojure.020-penultimate-element)
 ;; https://4clojure.oxal.org/#/problem/20
 
 (def answer (comp peek vec butlast))

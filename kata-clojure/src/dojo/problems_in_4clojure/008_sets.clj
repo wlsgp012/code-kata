@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.sets-8)
+(ns dojo.problems-in-4clojure.008-sets)
 ;; https://4clojure.oxal.org/#/problem/8
 
 (def answer #{:a :b :c :d})

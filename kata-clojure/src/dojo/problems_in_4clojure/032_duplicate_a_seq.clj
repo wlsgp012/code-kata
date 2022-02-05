@@ -1,4 +1,4 @@
-(ns dojo.problems_in_4clojure.duplicate-a-seq-32)
+(ns dojo.problems_in_4clojure.032-duplicate-a-seq)
 ; http://www.4clojure.com/problem/32
 
 (defn sol [col] (reduce #(conj %1 %2 %2) [] col))

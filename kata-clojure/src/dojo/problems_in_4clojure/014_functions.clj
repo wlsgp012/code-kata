@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.functions-14)
+(ns dojo.problems-in-4clojure.014-functions)
 ;; https://4clojure.oxal.org/#/problem/14
 
 (def answer 8)

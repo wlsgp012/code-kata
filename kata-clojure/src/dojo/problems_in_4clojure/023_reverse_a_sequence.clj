@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.reverse-a-sequence-23)
+(ns dojo.problems-in-4clojure.023-reverse-a-sequence)
 ;; https://4clojure.oxal.org/#/problem/23
 
 (defn answer [l]

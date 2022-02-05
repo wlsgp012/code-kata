@@ -1,4 +1,4 @@
-(ns dojo.problems-in-4clojure.sequences-12)
+(ns dojo.problems-in-4clojure.012-sequences)
 ;; https://4clojure.oxal.org/#/problem/12
 
 (def answer 3)
