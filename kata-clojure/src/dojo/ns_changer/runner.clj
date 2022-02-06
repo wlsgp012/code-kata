@@ -1,4 +1,4 @@
-(ns dojo.ns-chnager.runner
+(ns dojo.ns-changer.runner
   (:require [clojure.string :as s]
             [clojure.java.io :as io]))
 
