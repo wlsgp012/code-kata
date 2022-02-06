@@ -3,24 +3,15 @@
             [clojure.java.io :as io]))
 
 
-(defn get-nsname
-  [ns]
-  (s/replace (str (ns-name ns)) #"-" "_"))
+;; (def targetPath "/Users/user/development/source/projects/code-kata/kata-clojure/src/dojo/problems_in_4clojure")
 
-(defn get-file-path
-  [nsname]
-  (str "src/"
-       (s/join "/" (drop-last (s/split nsname #"\.")))))
-
-(def targetPath "/Users/user/development/source/projects/code-kata/kata-clojure/src/dojo/problems_in_4clojure")
-
-(defn- separate-filename
-  [fn]
+(defn separate-filename
+  [file-name]
   (let [separator "."
-        last-index (s/last-index-of fn separator)]
+        last-index (s/last-index-of file-name separator)]
     (if (nil? last-index)
-      fn
-     [(subs fn 0 last-index) separator (subs fn (inc last-index) (count fn))])))
+      file-name
+      [(subs file-name 0 last-index) separator (subs file-name (inc last-index) (count file-name))])))
 
 ;; read files in directory
 (defn get-files
@@ -29,7 +20,6 @@
           (file-seq (io/file path))))
 
 ;; file name change + number padding 001 002
-
 (defn padding
   [num count]
   (format (str "%0" count "d")
@@ -50,14 +40,11 @@
          extension (last splited)]
      (str (post->pre name "_") sep extension))))
 
-  (defn rename-file
-    [f]
-    (let [name (.getName f)
-          path (.getParent f)]
-      ;;(println (str path (change-name name)))))
-         (.renameTo f (io/file (str path "/" (change-name name))))))
-
-
+(defn rename-file
+  [f]
+  (let [name (.getName f)
+        path (.getParent f)]
+    (.renameTo f (io/file (str path "/" (change-name name))))))
 
 ;; ns change
 (defn read-file
@@ -80,6 +67,7 @@
         changed (change-ns-name (first code-as-string))]
     (spit (.getAbsolutePath file) (s/join (System/lineSeparator) (conj (rest code-as-string) changed)))))
 
+;; process
 (defn doit
   [path]
   (let [files (get-files path)]
