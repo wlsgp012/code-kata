@@ -1,9 +1,15 @@
 (ns dojo.problems-in-4clojure.067-prime-numbers)
 ;; https://4clojure.oxal.org/#/problem/67
 
+(defn factors
+  [z]
+  (filter #(int? (/ z %)) (take z (rest (range)))))
+
+(def factors-m (memoize factors))
+
 (defn prime?
   [z]
-  (= 2 (count (set (filter #(int? (/ z %)) (take z (rest (range))))))))
+  (= 2 (count (set (factors-m z)))))
 
 (defn sol
   [n]
@@ -36,3 +42,19 @@
                (fn [n]
                  (not (some #(= 0 (mod n %)) (range 2 n))))
                (range)))))
+
+
+;; Sieve of Eratosthenes by using 'keep'.
+
+(defn keep-mcdr [f coll]
+  (lazy-seq
+   (when-let [x (first coll)]
+     (cons x  (keep-mcdr f (f x (rest coll)))))))
+
+(defn prime-number [n]
+  (cons 1
+	(keep-mcdr
+	 (fn[x xs] (if (not-empty xs)
+		     (keep #(if-not (zero? (rem % x)) %)
+			   xs)))
+	 (range 2 n))))
