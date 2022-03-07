@@ -1,65 +1,71 @@
 package dojo.dp.visitor.clojure.single;
 
-abstract class Format {
+interface FormatPrinter {
+    void print(Message message);
+    void print(Activity activity);
 }
 
-class PDF extends Format {
-}
-
-class XML extends Format {
-}
-
-abstract class Item {
-    void export(Format f) {
-        throw new IllegalCallerException("No way");
-    }
-
-    abstract void export(PDF pdf);
-
-    abstract void export(XML xml);
-}
-
-class Message extends Item {
+class PDF implements FormatPrinter {
     @Override
-    void export(PDF f) {
-        PDFExporter.export(this);
+    public void print(Message message) {
+        System.out.println("to pdf -> message : " + message);
     }
 
     @Override
-    void export(XML xml) {
-        XMLExporter.export(this);
+    public void print(Activity activity) {
+        System.out.println("to pdf -> activity : " + activity);
     }
 }
 
-class Activity extends Item {
+class XML implements FormatPrinter {
     @Override
-    void export(PDF pdf) {
-        PDFExporter.export(this);
+    public void print(Message message) {
+        System.out.println("to xml -> message : " + message);
     }
 
     @Override
-    void export(XML xml) {
-        XMLExporter.export(this);
+    public void print(Activity activity) {
+        System.out.println("to xml -> activity : " + activity);
     }
 }
 
-class PDFExporter {
-    public static void export(Item item) {
-        System.out.println("Pdf Exporter : " + item.getClass().getSimpleName());
+interface Item {
+    void export(PDF pdf);
+
+    void export(XML xml);
+}
+
+class Message implements Item {
+
+    @Override
+    public void export(PDF pdf) {
+        pdf.print(this);
+    }
+
+    @Override
+    public void export(XML xml) {
+        xml.print(this);
     }
 }
 
-class XMLExporter {
-    public static void export(Item item) {
-        System.out.println("Xml Exporter : " + item.getClass().getSimpleName());
+class Activity implements Item {
+    @Override
+    public void export(PDF pdf) {
+        pdf.print(this);
+    }
+
+    @Override
+    public void export(XML xml) {
+        xml.print(this);
     }
 }
+
 
 class Main {
     public static void main(String[] args) {
         Item i = new Activity();
-//        PDF f = new PDF();
-        Format f = new PDF();
+        PDF f = new PDF();
+//        FormatPrinter f = new PDF();
         i.export(f);
     }
 }
