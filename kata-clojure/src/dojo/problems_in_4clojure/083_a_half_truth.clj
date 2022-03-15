@@ -13,3 +13,6 @@
 (= true (sol true true true false))
 
 ;; others
+#(not (apply = %&))
+
+(fn [& b] (and (not-every? true? b) (not (not-any? true? b))))
