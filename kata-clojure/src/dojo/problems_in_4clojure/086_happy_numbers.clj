@@ -17,3 +17,21 @@
 (= (sol 2) false)
 
 (= (sol 3) false)
+
+;; others
+
+(fn [n]
+  (let [x (apply + (map #(java.lang.Math/pow (Integer/parseInt %) 2) (re-seq #"." (str n))))]
+    (cond
+      (= x 4) false
+      (= x 1) true
+      :else      (recur (int x)))))
+
+(fn [n]
+  (let [i (apply +
+                 (map #(* % %)
+                         (map #(Integer/parseInt (str %)) (str n))))]
+    (condp = i
+      1 true
+      4 false
+      (recur i))))
