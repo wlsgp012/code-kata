@@ -28,3 +28,10 @@
 ;; this how it becomes now
 (make-drink (ProxiedBar. {:db 1} (StandardBar.))
             drink)
+
+
+;; create proxy in a runtime
+(reify IBar
+  (make-drink [this drink]
+    ;; implementation goes here
+    ))
