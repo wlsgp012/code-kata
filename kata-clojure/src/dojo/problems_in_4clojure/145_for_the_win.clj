@@ -14,3 +14,7 @@
 
 (= sol (for [[x y] (partition 2 (range 20))]
         (+ x y)))
+
+;; others
+
+(range 1 40, 4)
