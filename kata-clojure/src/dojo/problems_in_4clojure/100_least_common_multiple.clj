@@ -3,8 +3,9 @@
 ;; https://4clojure.oxal.org/#/problem/100
 
 (defn prime-factors
-  [x]
-  (filter prime? (range 1 (inc x))))
+  [x mx]
+  (println "mx=" mx)
+  (filter prime? (range 1 (inc mx))))
 
 (defn separate-fraction
   [x]
@@ -25,28 +26,35 @@
           m))
 
 (defn divide-by-primes
-  [x]
+  [x mx]
   (if (int? x)
     (reduce (fn [r a] (merge r (divide-possible x a)))
-           {1 1}
-           (prime-factors x))
+           {}
+           (prime-factors x mx))
     (let [[numerator denominator] (separate-fraction x)
-           numerator-result (divide-by-primes numerator)
-           denominator-result (for-denominator (divide-by-primes denominator))]
-      (merge-with max numerator-result denominator-result))))
+           numerator-result (divide-by-primes numerator numerator)
+           denominator-result (for-denominator (divide-by-primes denominator mx))]
+      (merge-with + numerator-result denominator-result))))
 
+(defn mx [xs]
+  (let [m (apply max xs)]
+    (if (ratio? m)
+      (apply max (flatten (map separate-fraction (filter ratio? xs))))
+      m)))
 
 (defn sol [& xs]
-  (reduce (fn [r [n i]] (* r (int (Math/pow n i))))
-          1
-          (reduce (fn [m a] (merge-with max m (divide-by-primes a)))
-                  {}
-                  xs)))
+  (let [mx (mx xs)]
+    (reduce (fn [r [n i]] (* r (rationalize (Math/pow n i))))
+           1
+           (reduce (fn [m a] (merge-with max m (divide-by-primes a mx)))
+                   {}
+                   xs))))
 
 (defn tm [& xs]
-  (reduce (fn [m a] (merge-with plus-ex m (divide-by-primes a)))
-          {}
-          xs))
+  (let [mx (mx xs)]
+    (reduce (fn [m a] (merge-with max m (divide-by-primes a mx)))
+           {}
+           xs)))
 
 (== (sol 2 3) 6)
 
