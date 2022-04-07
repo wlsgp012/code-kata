@@ -50,11 +50,6 @@
                    {}
                    xs))))
 
-(defn tm [& xs]
-  (let [mx (mx xs)]
-    (reduce (fn [m a] (merge-with max m (divide-by-primes a mx)))
-           {}
-           xs)))
 
 (== (sol 2 3) 6)
 
@@ -65,3 +60,27 @@
 (== (sol 3/4 1/6) 3/2)
 
 (== (sol 7 5/7 2 3/5) 210)
+
+
+;; others
+(fn [& xs]
+  (letfn [(gcd [a b] (if (zero? b) a (recur b (mod a b))))
+          (lcm [a b] (* (/ a (gcd a b)) b))]
+    (reduce lcm xs)))
+
+(fn lcm [& xs]
+  (let [gcd (fn [a b] (cond (= a 0) b (= b 0) a :else (recur (mod b a) a)))
+        lcm (fn [a b] (/ (* a b) (gcd a b)))]
+    (reduce lcm xs)))
+
+(fn lcm
+  ([x y]
+   (loop [a x b y]
+     (cond
+       (< a b) (recur (+ a x) b)
+       (> a b) (recur a (+ b y))
+       :else a)))
+  ([x y z]
+   (lcm (lcm x y) (lcm y z)))
+  ([x y z t]
+   (lcm (lcm (lcm x y) (lcm y z)) (lcm z t))))
