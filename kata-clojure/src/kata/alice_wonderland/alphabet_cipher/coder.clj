@@ -1,31 +1,27 @@
 (ns kata.alice-wonderland.alphabet-cipher.coder)
 ;; https://github.com/gigasquid/wonderland-clojure-katas/tree/master/alphabet-cipher
 
-(defn transform [c p]
-  (let [a (int \a)
-        z (int \z)
-        distance (- (int p) a)
-        r (+ (int c) distance)]
-    (char
-     (if (> r z)
-       (+ (- a 1) (- r z))
-       r))))
+(defn trans
+  ([c p] (trans c p +))
+  ([c p direction]
+   (let [a (int \a)
+         v (vec (range a (inc (int \z))))
+         distance (- (int p) a)
+         current-pos (- (int c) a)]
+     (char (nth v (mod (direction current-pos distance) (count v)))))))
 
-(defn r-transform [c p]
-  (let [a (int \a)
-        z (int \z)
-        distance (- (int p) a)
-        r (- (int c) distance)]
-    (char
-     (if (> a r)
-       (- (+ z 1) (- a r))
-       r))))
+(defn rtrans [c p]
+  (trans c p -))
+
+(defn coding [k m t]
+  (apply str (map t m (cycle k))))
+
 
 (defn encode [keyword message]
-  (apply str (map transform message (cycle keyword))))
+  (coding keyword message trans))
 
 (defn decode [keyword message]
-  (apply str (map r-transform message (cycle keyword))))
+  (coding keyword message rtrans))
 
 (defn decipher [cipher message]
   "decypherme")
