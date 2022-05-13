@@ -32,6 +32,7 @@ fun <A, B, C> getCompose(): ((B) -> C) -> ((A) -> B) -> (A) -> C = { f -> { g ->
 fun <A, B, C> higherAndThen(): ((A) -> B) -> ((B) -> C) -> (A) -> C = { f -> { g -> { a -> g(f(a)) } } }
 
 fun par(f: (Int) -> Int): Int = f(3) + 1
+
 fun main() {
     val add1 = { a: Int -> a + 1 }
     val multiply2 = { a: Int -> a * 2 }
