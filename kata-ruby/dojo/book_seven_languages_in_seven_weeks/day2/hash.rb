@@ -20,3 +20,13 @@ end
 puts tell_the_truth
 puts tell_the_truth(:profession => :lawyer)
 puts tell_the_truth({ :profession => :lawyer })
+
+puts "----------------"
+
+def to_arr(h)
+  r = []
+  h.each { |k, v| r.push(k, v)}
+  r
+end
+p to_arr(numbers)
+
