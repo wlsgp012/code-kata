@@ -39,11 +39,12 @@ object Factorial {
 }
 
 fun fact(n: Int): BigInteger {
-    tailrec fun fact(x: BigInteger, r: BigInteger): BigInteger = if (x > n.toBigInteger()) r else fact(x + BigInteger.ONE, r * x)
+    tailrec fun fact(x: BigInteger, r: BigInteger): BigInteger =
+        if (x > n.toBigInteger()) r else fact(x + BigInteger.ONE, r * x)
     return fact(BigInteger.ONE, BigInteger.ONE)
 }
 
-fun f(x: BigInteger, r: BigInteger): BigInteger{
+fun f(x: BigInteger, r: BigInteger): BigInteger {
     return x + r
 }
 
@@ -52,7 +53,7 @@ fun f(x: BigInteger, r: BigInteger): BigInteger{
  */
 fun fibo(number: Int): BigInteger {
     tailrec fun go(n: Int, a: BigInteger, b: BigInteger): BigInteger {
-        return if(n == number) a + b
+        return if (n == number) a
         else go(n + 1, a + b, a)
     }
     return go(0, BigInteger.ONE, BigInteger.ZERO)
