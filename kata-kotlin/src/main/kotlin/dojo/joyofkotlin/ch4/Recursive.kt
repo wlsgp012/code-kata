@@ -47,6 +47,23 @@ fun f(x: BigInteger, r: BigInteger): BigInteger{
     return x + r
 }
 
+/**
+ * p.168 4-3
+ */
+fun fibo(number: Int): BigInteger {
+    tailrec fun go(n: Int, a: BigInteger, b: BigInteger): BigInteger {
+        return if(n == number) a + b
+        else go(n + 1, a + b, a)
+    }
+    return go(0, BigInteger.ONE, BigInteger.ZERO)
+}
+
+fun <T> makeString(list: List<T>, delim: String): String =
+    when {
+        list.isEmpty() -> ""
+        else -> "${list.first()}$delim${makeString(list.drop(1), delim)}"
+    }
+
 fun main() {
 //    hello()
 //    println(sum_old(10))
@@ -58,5 +75,12 @@ fun main() {
 //    println(fact(3))
 //    println(fact(4))
 //    println(fact(100000))
-    println(Factorial.factorial(4))
+//    println(Factorial.factorial(4))
+    println(fibo(0))
+    println(fibo(1))
+    println(fibo(2))
+    println(fibo(3))
+    println(fibo(4))
+    println(fibo(5))
+    println(fibo(10000).toString().length)
 }
