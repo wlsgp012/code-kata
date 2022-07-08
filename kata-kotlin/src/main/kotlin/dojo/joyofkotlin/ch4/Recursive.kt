@@ -65,6 +65,46 @@ fun <T> makeString(list: List<T>, delim: String): String =
         else -> "${list.first()}$delim${makeString(list.drop(1), delim)}"
     }
 
+fun <T> List<T>.head(): T =
+    if (this.isEmpty())
+        throw java.lang.IllegalArgumentException("head called on empty list")
+    else
+        this[0]
+
+fun <T> List<T>.tail(): List<T> =
+    if (this.isEmpty())
+        throw IllegalArgumentException("tail called on empty list")
+    else
+        this.drop(1)
+
+/**
+ * p.170 4-4
+ */
+fun <T> makeString2(list: List<T>, delim: String): String {
+    tailrec fun go(l: List<T>, r: String): String {
+        return if (l.isEmpty()) r else go(l.tail(), "$r$delim${l.head()}")
+    }
+    return go(list, "")
+}
+
+fun <T> makeString3(list: List<T>, delim: String): String {
+    return foldLeft(list, "") { a, b -> "$a$delim$b" }
+}
+
+/**
+ * p.171 4-5
+ */
+tailrec fun <T, R> foldLeft(l: List<T>, r: R, f: (R, T) -> R): R =
+    if (l.isEmpty()) r else foldLeft(l.tail(), f(r, l.head()), f)
+
+fun prepend(c: Char, s: String): String = "$c$s"
+
+/**
+ * p.172 4-6
+ */
+fun <T, R> foldRight(l: List<T>, r: R, f: (T, R) -> R): R =
+    if (l.isEmpty()) r else f(l.head(), foldRight(l.tail(), r, f))
+
 fun main() {
 //    hello()
 //    println(sum_old(10))
