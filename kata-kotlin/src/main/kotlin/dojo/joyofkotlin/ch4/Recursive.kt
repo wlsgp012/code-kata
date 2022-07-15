@@ -1,6 +1,8 @@
 package dojo.joyofkotlin.ch4
 
 import java.math.BigInteger
+import java.util.*
+import java.util.Collections.emptyList
 
 fun hello() {
     println("Hello")
@@ -105,6 +107,50 @@ fun prepend(c: Char, s: String): String = "$c$s"
 fun <T, R> foldRight(l: List<T>, r: R, f: (T, R) -> R): R =
     if (l.isEmpty()) r else f(l.head(), foldRight(l.tail(), r, f))
 
+/**
+ * p.174 4-7
+ */
+fun <T> reverseViaFoldLeft(l: List<T>): List<T> {
+    return foldLeft(l, emptyList()) { r, t -> listOf(t) + r }
+}
+
+fun <T> reverseViaFoldRight(l: List<T>): List<T> {
+    return foldRight(l, emptyList()) { t, r -> r + t }
+}
+
+/**
+ * p.175 4-8
+ */
+fun <T> reverseViaFoldLeft2(l: List<T>): List<T> {
+    return foldLeft(l, listOf()) { r, t -> foldLeft(r, listOf(t)) { a, b -> a + b } }
+}
+
+/**
+ * p.176 4-9
+ */
+fun range(start: Int, end: Int): List<Int> {
+    tailrec fun go(n: Int, l: List<Int>): List<Int> {
+        return if(n == end) l
+        else go(inc(n), l + n)
+    }
+    return go(start, emptyList())
+}
+
+/**
+ * p.177 4-10
+ */
+fun <T> unfold(seed: T, f: (T) -> T, p: (T) -> Boolean): List<T>{
+    tailrec fun go(v: T, l: List<T>): List<T> {
+        return if(p(v)) go(f(v), l + v)
+        else l
+    }
+    return go(seed, emptyList())
+}
+
+/**
+ * p.177 4-11
+ */
+fun rangeViaUnfold(start: Int, end: Int): List<Int> = unfold(start, ::inc) { v -> end > v }
 fun main() {
 //    hello()
 //    println(sum_old(10))
@@ -117,11 +163,16 @@ fun main() {
 //    println(fact(4))
 //    println(fact(100000))
 //    println(Factorial.factorial(4))
-    println(fibo(0))
-    println(fibo(1))
-    println(fibo(2))
-    println(fibo(3))
-    println(fibo(4))
-    println(fibo(5))
-    println(fibo(10000).toString().length)
+//    println(fibo(0))
+//    println(fibo(1))
+//    println(fibo(2))
+//    println(fibo(3))
+//    println(fibo(4))
+//    println(fibo(5))
+//    println(fibo(10000).toString().length)
+//    println(reverseViaFoldLeft(listOf(1, 2, 3)))
+//    println(reverseViaFoldLeft2(listOf(1, 2, 3)))
+//    println(reverseViaFoldRight(listOf(1, 2, 3)))
+    println(range(1, 5))
+    println(rangeViaUnfold(1, 5))
 }
