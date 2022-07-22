@@ -126,31 +126,58 @@ fun <T> reverseViaFoldLeft2(l: List<T>): List<T> {
 }
 
 /**
- * p.176 4-9
- */
-fun range(start: Int, end: Int): List<Int> {
-    tailrec fun go(n: Int, l: List<Int>): List<Int> {
-        return if(n == end) l
-        else go(inc(n), l + n)
-    }
-    return go(start, emptyList())
-}
-
-/**
  * p.177 4-10
  */
-fun <T> unfold(seed: T, f: (T) -> T, p: (T) -> Boolean): List<T>{
+fun <T> unfold(seed: T, f: (T) -> T, p: (T) -> Boolean): List<T> {
     tailrec fun go(v: T, l: List<T>): List<T> {
-        return if(p(v)) go(f(v), l + v)
+        return if (p(v)) go(f(v), l + v)
         else l
     }
     return go(seed, emptyList())
 }
 
 /**
+ * p.176 4-9
+ */
+fun range(start: Int, end: Int): List<Int> {
+    tailrec fun go(n: Int, l: List<Int>): List<Int> {
+        return if (n == end) l
+        else go(inc(n), l + n)
+    }
+    return go(start, emptyList())
+}
+
+/**
  * p.177 4-11
  */
 fun rangeViaUnfold(start: Int, end: Int): List<Int> = unfold(start, ::inc) { v -> end > v }
+
+fun <T> prepend(list: List<T>, elem: T): List<T> = listOf(elem) + list
+
+/**
+ * p.178 4-12
+ */
+fun range2(start: Int, end: Int): List<Int> =
+    if (start >= end) listOf()
+    else prepend(range2(inc(start), end), start)
+
+/**
+ * p.178 4-13
+ */
+fun <T> unfold2(seed: T, f: (T) -> T, p: (T) -> Boolean): List<T> =
+    if (!p(seed)) listOf()
+    else prepend(unfold2(f(seed), f, p), seed)
+
+/**
+ * p.179 4-14
+ */
+fun <T> unfold3(seed: T, f: (T) -> T, p: (T) -> Boolean): List<T> {
+    tailrec fun go(acc: List<T>, t: T): List<T> =
+        if (!p(t)) acc
+        else go(prepend(acc, t), f(t))
+    return go(listOf(), seed)
+}
+
 fun main() {
 //    hello()
 //    println(sum_old(10))
@@ -175,4 +202,5 @@ fun main() {
 //    println(reverseViaFoldRight(listOf(1, 2, 3)))
     println(range(1, 5))
     println(rangeViaUnfold(1, 5))
+    IntRange
 }
