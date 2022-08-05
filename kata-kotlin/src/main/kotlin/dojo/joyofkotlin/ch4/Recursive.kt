@@ -1,5 +1,6 @@
 package dojo.joyofkotlin.ch4
 
+import dojo.inaction.ch3.joinToString
 import java.math.BigInteger
 import java.util.*
 import java.util.Collections.emptyList
@@ -178,6 +179,47 @@ fun <T> unfold3(seed: T, f: (T) -> T, p: (T) -> Boolean): List<T> {
     return go(listOf(), seed)
 }
 
+/**
+ * p.182 4-15
+ */
+fun fiboAsString(number: Int): String {
+    val c = mutableListOf<BigInteger>(BigInteger.ONE)
+    tailrec fun go(n: Int, a: BigInteger, b: BigInteger): BigInteger {
+        return if (n == number) a
+        else {
+            val next = a + b
+            c.add(next)
+            go(n + 1, next, a)
+        }
+    }
+
+    go(0, BigInteger.ONE, BigInteger.ZERO)
+    return c.joinToString()
+}
+
+/**
+ * p.184 4-16
+ */
+fun <T> iterate(seed: T, f: (T) -> T, n: Int): List<T> {
+    tailrec fun go(v: T, l: List<T>): List<T> {
+        return if (l.size < n) go(f(v), l + v)
+        else l
+    }
+    return go(seed, emptyList())
+}
+
+/**
+ * p.185 4-17
+ */
+fun <T, U> map(list: List<T>, f: (T) -> U): List<U> = foldLeft(list, listOf()) { r, a -> r + f(a) }
+
+/**
+ * p.186 4-18
+ */
+fun fiboCorecursive(number: Int): String {
+    val pairs = iterate(Pair(1, 1), { p -> (p.second to (p.first + p.second)) }, number)
+    return map(pairs) { p -> p.first }.joinToString()
+}
 fun main() {
 //    hello()
 //    println(sum_old(10))
@@ -200,7 +242,8 @@ fun main() {
 //    println(reverseViaFoldLeft(listOf(1, 2, 3)))
 //    println(reverseViaFoldLeft2(listOf(1, 2, 3)))
 //    println(reverseViaFoldRight(listOf(1, 2, 3)))
-    println(range(1, 5))
-    println(rangeViaUnfold(1, 5))
-    IntRange
+//    println(range(1, 5))
+//    println(rangeViaUnfold(1, 5))
+    println(fiboAsString(10))
+    println(fiboCorecursive(10))
 }
