@@ -25,13 +25,18 @@
 (defn pick-next
   [prev words results]
   (let [rs (set results)]
-    (first (filter #(not (contains? rs %)) (filter (partial equal-word-except-one-letter prev) words)))))
+    (filter #(not (contains? rs %)) (filter (partial equal-word-except-one-letter prev) words))))
 
 (defn doublets
   ([word1 word2]
-   (doublets word1 word2 words []))
+   ;;(doublets word1 word2  words []))
+   (doublets word1 word2 (same-lengths (count word1) words) []))
   ([word1 word2 words result]
    (let [next (pick-next word1 words result)]
-     (if (nil? next)
-       (if (not= word1 word2) [] (conj result word1))
-       (recur next word2 (remove #(= next %) words) (conj result word1))))))
+     (case (count next)
+       0 (if (not= word1 word2) [] (conj result word1))
+       1 (let [n (first next)] (recur n word2 (remove #(= n %) words) (conj result word1)))
+       (first (filter seq (map #(doublets % word2 (remove (fn [n] (= % n)) words) (conj result word1)) next)))))))
+
+(comment
+  (time (doublets "bank" "loan")))
