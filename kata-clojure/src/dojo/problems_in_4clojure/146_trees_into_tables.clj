@@ -1,6 +1,6 @@
 (ns dojo.problems-in-4clojure.146-trees-into-tables)
 
-(def sol
+(def sol2
   (fn
     ([m] (sol m []))
     ([m super-keys]
@@ -9,6 +9,13 @@
                  (into r (if (not (map? v)) [{karr v}] (sol v karr)))))
              {}
              m))))
+
+(def sol
+  (fn [m]
+    (into {}
+          (mapcat
+           (fn [[k v]] (map #(vector [k (first %)] (last %)) v))
+           m))))
 
 (= (sol '{a {p 1, q 2}
          b {m 3, n 4}})
@@ -25,4 +32,11 @@
    '{[m 1] [a b c], [m 3] nil})
 
 ;; others
-;; tbu
+
+(def o1
+  #(apply array-map (reduce concat (for [[x y] % [z w] y]
+                                    [[x z] w]))))
+(def o2
+  (fn [m]
+    (into {} (for [[x y] m [z w] y]
+               [[x z] w]))))
