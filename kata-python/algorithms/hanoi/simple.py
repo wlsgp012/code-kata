@@ -1,3 +1,6 @@
+import time
+
+
 def hanoi2(n, frm=1, to=3, empty=2):
     if n == 1:
         print(f'{frm}>>{to}')
@@ -15,4 +18,6 @@ def hanoi(n, frm=1, to=3, empty=2):
 
 
 if __name__ == '__main__':
-    hanoi(3)
+    start = time.time()
+    hanoi(10)
+    print(time.time() - start)
