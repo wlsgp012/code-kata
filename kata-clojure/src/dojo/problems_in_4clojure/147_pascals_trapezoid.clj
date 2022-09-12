@@ -1,10 +1,14 @@
 (ns dojo.problems-in-4clojure.147-pascals-trapezoid)
 
-(defn sol [v]
+(defn sol2 [v]
   (letfn [(append-zero [vv] (conj vv 0))
           (prepend-zero [vv] (into [0] vv))
           (combine [x y] (vec (map +' x y)))]
     (iterate #(combine (append-zero %) (prepend-zero %)) v)))
+
+(def sol
+  (fn [v]
+    (iterate #(mapv +' (cons 0 %) (conj % 0)) v)))
 
 (= (second (sol [2 3 2])) [2 5 5 2])
 
