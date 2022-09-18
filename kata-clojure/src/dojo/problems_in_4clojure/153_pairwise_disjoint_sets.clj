@@ -1,8 +1,15 @@
 (ns dojo.problems-in-4clojure.153-pairwise-disjoint-sets)
 
 (def sol
+  #(= (apply + (map count %))
+      (count (apply clojure.set/union %))))
+
+;; wrong answear
+(def sol2
   (fn [s]
-    (empty? (apply clojure.set/intersection s))))
+    (reduce (comp set filter)
+            (first s)
+            s)))
 
 (= (sol #{#{\U} #{\s} #{\e \R \E} #{\P \L} #{\.}})
    true)
@@ -50,3 +57,11 @@
                              #{(do) set contains? nil?}
                              #{, , , #_, , empty?}})
    false)
+
+;; others
+#(=
+  (apply + (map count %))
+  (count (apply clojure.set/union %)))
+
+#(every? empty? (for [x % y % :when (not= x y)]
+                  (clojure.set/intersection x y)))
