@@ -23,12 +23,3 @@ tailrec fun recurCall(url: String, count: Long = 0) {
     recurCall(url, count + 1)
 }
 
-fun main() {
-    CompletableFuture.runAsync {
-        recurCall("http://127.0.0.1:17070/v1/fulfillment/order/hello")
-    }
-    CompletableFuture.runAsync {
-        recurCall("http://127.0.0.1:17070/v1/fulfillment/order/hello")
-    }
-    recurCall("http://127.0.0.1:17070/v1/fulfillment/order/hello")
-}
