@@ -65,3 +65,6 @@
 
 #(every? empty? (for [x % y % :when (not= x y)]
                   (clojure.set/intersection x y)))
+
+(fn [set-of-sets]
+  (apply distinct? (mapcat seq set-of-sets)))
