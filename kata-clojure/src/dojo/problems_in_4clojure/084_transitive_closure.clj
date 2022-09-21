@@ -24,11 +24,20 @@
             #{}
             ss)))
 
-(defn sol
+(defn sol4
   [ss]
   (let [keymap (into {} ss)
         valuemap (into {} (map (fn [[a b]] [b a] ss)))
         group (reduce (fn [r [k v]] ))]))
+
+(defn sol
+  [ss]
+  (letfn [(find-tails [group [f l] r]
+            (let [next (first (filter #(= l (first %)) group))]
+              (if next (recur group next (conj r next)) r)))]
+    (reduce (fn [r e] (find-tails group e []))
+           ss
+           ss)))
 
 (let [divides #{[8 4] [9 3] [4 2] [27 9]}]
   (= (sol divides) #{[4 2] [8 4] [8 2] [9 3] [27 9] [27 3]}))
