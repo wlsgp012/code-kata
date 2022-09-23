@@ -1,41 +1,12 @@
 (ns dojo.problems-in-4clojure.084-transitive-closure)
 ;; https://4clojure.oxal.org/#/problem/84
 
-(defn sol2
-  [ss]
-  (reduce (fn [r x]
-            (if (= (last (last r)) (first x))
-              (conj (vec (drop-last r)) (conj (vec (last r)) (last x)))
-              (conj r x)))
-          []
-          (sort (comp - compare) ss)))
-
-(defn sol3
-  [ss]
-  (letfn [(neighbor [[ak av]]
-            (first (filter seq (map
-                          (fn [[bk bv]]
-                            (cond
-                              (= ak bv) [bk av]
-                              (= av bk) [ak bv]
-                              :else nil))  ss))))]
-    (reduce (fn [r x]
-              (conj r x (neighbor x)))
-            #{}
-            ss)))
-
-(defn sol4
-  [ss]
-  (let [keymap (into {} ss)
-        valuemap (into {} (map (fn [[a b]] [b a] ss)))
-        group (reduce (fn [r [k v]] ))]))
-
 (defn sol
   [ss]
   (letfn [(find-tails [group [f l] r]
             (let [next (first (filter #(= l (first %)) group))]
-              (if next (recur group next (conj r next)) r)))]
-    (reduce (fn [r e] (find-tails group e []))
+              (if next (recur group [f (last next)] (conj r [f (last next)])) r)))]
+    (reduce (fn [r e] (into r (find-tails r e [e])))
            ss
            ss)))
 
@@ -53,3 +24,22 @@
   (= (sol progeny)
      #{["father" "son"] ["father" "grandson"]
        ["uncle" "cousin"] ["son" "grandson"]}))
+
+;; others
+#(let [k (into % (for [[a b] % [c d] % :when (= b c)] [a d]))]
+   (if (= k %) % (recur k)))
+
+(fn [r]
+  (->>
+   r
+   (iterate #(into % (for [[x y] % [y1 z] % :when (= y y1)] [x z])))
+   (partition 2)
+   (filter #(apply = %))
+   first first))
+
+
+#(loop [coll %]
+   (let [x (set (concat coll (for [[a b] coll [c d] coll :when (= b c)] [a d])))]
+     (if (= x coll)
+       x
+       (recur x))))
