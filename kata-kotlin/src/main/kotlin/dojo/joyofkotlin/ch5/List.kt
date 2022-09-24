@@ -73,5 +73,4 @@ fun main() {
 //    val drop = list.drop2(9999)
     val drop = list.drop(30000)
     println(drop)
-    listOf(1,2,3).max()
 }
