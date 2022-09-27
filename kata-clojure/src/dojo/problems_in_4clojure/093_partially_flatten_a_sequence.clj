@@ -1,9 +1,9 @@
 (ns dojo.problems-in-4clojure.093-partially-flatten-a-sequence)
 
 (def sol
-  (fn [s]
-    (letfn [(flat [ss] (mapcat #(if (sequential? %) (flat %) %) ss))]
-      (mapcat flat s ))))
+  (fn [xs]
+    (filter (fn [x] (and (sequential? x) (every? (complement sequential?) x)))
+     (tree-seq sequential? identity xs))))
 
 (= (sol [["Do"] ["Nothing"]])
    [["Do"] ["Nothing"]])
@@ -13,3 +13,9 @@
 
 (= (sol '((1 2)((3 4)((((5 6)))))))
    '((1 2)(3 4)(5 6)))
+
+;; others
+(fn pflatten [tree]
+  (if (every? sequential? tree)
+    (mapcat pflatten tree)
+    [tree]))
