@@ -45,6 +45,22 @@ sealed class List<A> {
      * p.214 5-4
      */
     fun dropWhile(p: (A) -> Boolean): List<A> = dropWhile(this, p)
+
+    fun concat(xs: List<A>): List<A> = concat(this, xs)
+
+    fun reverse(): List<A> = reverse(List.invoke(), this)
+
+    /**
+     * p.217 5-5
+     */
+    fun init(): List<A> =
+        when (this) {
+            Nil -> this
+            is Cons -> (if (tail is Nil) tail else Cons(head, tail.init())) as List<A>
+        }
+
+    fun init2(): List<A> = reverse().drop(1).reverse()
+
     companion object {
         operator fun <A> invoke(vararg az: A): List<A> =
             az.foldRight(Nil as List<A>) { a: A, list: List<A> -> Cons(a, list) }
@@ -59,18 +75,43 @@ sealed class List<A> {
          * p.214 5-4
          */
         tailrec fun <A> dropWhile(l: List<A>, p: (A) -> Boolean): List<A> =
-            when(l){
+            when (l) {
                 Nil -> l
-                is Cons -> if(p(l.head)) dropWhile(l, p) else l
+                is Cons -> if (p(l.head)) dropWhile(l, p) else l
+            }
+
+        fun <A> concat(xs: List<A>, ys: List<A>): List<A> =
+            when (xs) {
+                Nil -> ys
+                is Cons -> Cons(xs.head, concat(xs.tail, ys))
+//                is Cons -> concat(xs.tail, ys).cons(xs.head)
+            }
+
+        tailrec fun <A> reverse(acc: List<A>, list: List<A>): List<A> =
+            when (list) {
+                Nil -> acc
+                is Cons -> reverse(acc.cons(list.head), list.tail)
             }
     }
 }
 
-
+/**
+ * p.218 5-6
+ */
+// fun sum(ints: List<Int>): Int =
+//    when (ints) {
+//        Nil -> 0
+//        is Cons -> ints.head + sum(ints.tail)
+//    }
 
 fun main() {
     val list = (1..30000).fold(List(0)) { l, i -> l.cons(i) }
 //    val drop = list.drop2(9999)
     val drop = list.drop(30000)
     println(drop)
+
+    val concat = List(1, 2, 3).concat(List(4, 5, 6))
+    println(concat)
+
+    println(List(1, 2, 3, 4).init())
 }
