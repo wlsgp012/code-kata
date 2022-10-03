@@ -1,0 +1,2 @@
+- github link : https://github.com/clojurebook/ClojureProgramming/blob/master/ch03-game-of-life/src/com/clojurebook/collections/life.clj
+- book : https://www.oreilly.com/library/view/clojure-programming/9781449310387/
