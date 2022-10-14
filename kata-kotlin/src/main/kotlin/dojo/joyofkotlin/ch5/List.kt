@@ -1,19 +1,26 @@
 package dojo.joyofkotlin.ch5
 
+import dojo.joyofkotlin.ch5.List.*
+
 sealed class List<A> {
     abstract fun isEmpty(): Boolean
 
-    private object Nil : List<Nothing>() {
+    abstract fun concat(list: List<A>): List<A>
+
+    abstract class Empty<A> : List<A>() {
+        override fun concat(list: List<A>): List<A> = list
         override fun isEmpty(): Boolean = true
-        override fun toString(): String = "[NIL]"
     }
 
-    private class Cons<A>(internal val head: A, internal val tail: List<A>) : List<A>() {
+    private object Nil : Empty<Nothing>()
+    class Cons<A>(val head: A, val tail: List<A>) : List<A>() {
         override fun isEmpty(): Boolean = false
+        override fun concat(list: List<A>): List<A> = Cons(this.head, list.concat(this.tail))
+
         override fun toString(): String = "[${toString("", this)}NIL]"
         private tailrec fun toString(acc: String, list: List<A>): String =
             when (list) {
-                Nil -> acc
+                is Empty -> acc
                 is Cons -> toString("$acc${list.head}, ", list.tail)
             }
     }
@@ -28,14 +35,13 @@ sealed class List<A> {
      */
     fun setHead(e: A): List<A> =
         when (this) {
-            Nil -> this
-//            is Cons -> Cons(e, this.tail)
+            is Empty -> this
             is Cons -> this.tail.cons(e)
         }
 
     fun drop2(n: Int): List<A> =
         when (this) {
-            Nil -> this
+            is Empty -> this
             is Cons -> if (n == 0) this else this.tail.drop2(n - 1)
         }
 
@@ -46,7 +52,7 @@ sealed class List<A> {
      */
     fun dropWhile(p: (A) -> Boolean): List<A> = dropWhile(this, p)
 
-    fun concat(xs: List<A>): List<A> = concat(this, xs)
+//    fun concat(xs: List<A>): List<A> = concat(this, xs)
 
     fun reverse(): List<A> = reverse(List.invoke(), this)
 
@@ -55,7 +61,7 @@ sealed class List<A> {
      */
     fun init(): List<A> =
         when (this) {
-            Nil -> this
+            is Empty -> this
             is Cons -> (if (tail is Nil) tail else Cons(head, tail.init())) as List<A>
         }
 
@@ -67,8 +73,8 @@ sealed class List<A> {
 
         tailrec fun <A> drop(l: List<A>, n: Int): List<A> =
             when (l) {
-                List.Nil -> l
-                is List.Cons -> if (n == 0) l else drop(l.tail, n - 1)
+                is Empty -> l
+                is Cons -> if (n == 0) l else drop(l.tail, n - 1)
             }
 
         /**
@@ -76,21 +82,22 @@ sealed class List<A> {
          */
         tailrec fun <A> dropWhile(l: List<A>, p: (A) -> Boolean): List<A> =
             when (l) {
-                Nil -> l
+                is Empty -> l
                 is Cons -> if (p(l.head)) dropWhile(l, p) else l
             }
 
-        fun <A> concat(xs: List<A>, ys: List<A>): List<A> =
-            when (xs) {
-                Nil -> ys
-                is Cons -> Cons(xs.head, concat(xs.tail, ys))
-//                is Cons -> concat(xs.tail, ys).cons(xs.head)
-            }
+//        fun <A> concat(xs: List<A>, ys: List<A>): List<A> =
+//            when (xs) {
+//                Nil -> ys
+//                is Cons -> Cons(xs.head, concat(xs.tail, ys))
+// //                is Cons -> concat(xs.tail, ys).cons(xs.head)
+//            }
 
         tailrec fun <A> reverse(acc: List<A>, list: List<A>): List<A> =
             when (list) {
                 Nil -> acc
                 is Cons -> reverse(acc.cons(list.head), list.tail)
+                else -> throw IllegalStateException()
             }
     }
 }
@@ -98,11 +105,13 @@ sealed class List<A> {
 /**
  * p.218 5-6
  */
-// fun sum(ints: List<Int>): Int =
-//    when (ints) {
-//        Nil -> 0
-//        is Cons -> ints.head + sum(ints.tail)
-//    }
+fun sum(ints: List<Int>): Int =
+    when (ints) {
+        is Empty -> 0
+        is Cons -> ints.head + sum(ints.tail)
+    }
+
+
 
 fun main() {
     val list = (1..30000).fold(List(0)) { l, i -> l.cons(i) }
@@ -114,4 +123,5 @@ fun main() {
     println(concat)
 
     println(List(1, 2, 3, 4).init())
+    println(sum(List(1, 2, 3, 4)))
 }
