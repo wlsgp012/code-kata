@@ -54,7 +54,7 @@ sealed class List<A> {
 
 //    fun concat(xs: List<A>): List<A> = concat(this, xs)
 
-    fun reverse(): List<A> = reverse(List.invoke(), this)
+    fun reverse(): List<A> = reverse(invoke(), this)
 
     /**
      * p.217 5-5
@@ -66,6 +66,20 @@ sealed class List<A> {
         }
 
     fun init2(): List<A> = reverse().drop(1).reverse()
+
+    fun <B> foldRight(identity: B, f: (A) -> (B) -> B): B = Companion.foldRight(this, identity, f)
+
+    fun <B> foldLeft(acc: B, f: (B) -> (A) -> B): B = Companion.foldLeft(acc, this, f)
+
+    /**
+     * p.224 5-7
+     */
+    fun length(): Int = foldRight(0) { { it + 1 } }
+
+    /**
+     * p.231 5-11
+     */
+    fun reverse2(): List<A> = foldLeft(invoke()) { acc -> { Cons(it, acc) } }
 
     companion object {
         operator fun <A> invoke(vararg az: A): List<A> =
@@ -99,6 +113,18 @@ sealed class List<A> {
                 is Cons -> reverse(acc.cons(list.head), list.tail)
                 else -> throw IllegalStateException()
             }
+
+        fun <A, B> foldRight(list: List<A>, identity: B, f: (A) -> (B) -> B): B =
+            when (list) {
+                is Empty -> identity
+                is Cons -> f(list.head)(foldRight(list.tail, identity, f))
+            }
+
+        tailrec fun <A, B> foldLeft(acc: B, list: List<A>, f: (B) -> (A) -> B): B =
+            when (list) {
+                is Empty -> acc
+                is Cons -> foldLeft(f(acc)(list.head), list.tail, f)
+            }
     }
 }
 
@@ -111,8 +137,36 @@ fun sum(ints: List<Int>): Int =
         is Cons -> ints.head + sum(ints.tail)
     }
 
+/**
+ * p.224 5-7
+ */
+fun product(ds: List<Double>): Double =
+    when (ds) {
+        is Empty -> 1.0
+        is Cons -> ds.head * product(ds.tail)
+    }
 
+fun <A, B> foldRight(list: List<A>, identity: B, f: (A) -> (B) -> B): B =
+    when (list) {
+        is Empty -> identity
+        is Cons -> f(list.head)(foldRight(list.tail, identity, f))
+    }
 
+fun sumByFoldRight(ints: List<Int>): Int = foldRight(ints, 0) { x -> { r -> x + r } }
+fun productByFoldRight(ds: List<Double>): Double = foldRight(ds, 1.0) { x -> { r -> x * r } }
+
+tailrec fun <A, B> foldLeft(acc: B, list: List<A>, f: (B) -> (A) -> B): B =
+    when (list) {
+        is Empty -> acc
+        is Cons -> foldLeft(f(acc)(list.head), list.tail, f)
+    }
+
+/**
+ * p.230 5-10
+ */
+fun sumByFoldLeft(ints: List<Int>): Int = foldLeft(0, ints) { acc -> { x -> acc + x } }
+fun productByFoldLeft(ds: List<Double>): Double = foldLeft(1.0, ds) { acc -> { x -> acc * x } }
+fun lengthByFoldLeft(xs: List<*>): Int = foldLeft(0, xs) { acc -> { acc + 1 } }
 fun main() {
     val list = (1..30000).fold(List(0)) { l, i -> l.cons(i) }
 //    val drop = list.drop2(9999)

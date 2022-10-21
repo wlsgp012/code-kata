@@ -12,7 +12,15 @@
         (seq result)))))
 
 (defn sol [n coll]
-  )
+  (let [s (tree-seq coll? identity coll)]
+    (loop [sum 0 xs s result []]
+      (let [es (take-while number? xs)
+            next-seq (next (drop-while number? xs))
+            current-sum (apply + es)
+            next-sum (+ sum current-sum)]
+        (if (>= next-sum n)
+          ()
+          (recur next-sum next-seq (vec (update result (count result) #(conj % )))))))))
 
 (=  (sol 10 [1 2 [3 [4 5] 6] 7])    '(1 2 (3 (4))))
 
