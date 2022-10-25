@@ -32,6 +32,6 @@
          (map set)
          set)))
 
-(fn power-set
+(defn power-set
   [s]
   (reduce #(into % (for [subset %] (conj subset %2))) #{#{}} s))
