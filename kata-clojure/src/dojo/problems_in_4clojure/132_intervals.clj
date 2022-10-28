@@ -11,21 +11,14 @@
            [(first xs)]
            (rest xs))))
 
-(defn sol4
-  ([p v [x & xs]] (sol p v x xs))
-  ([p v prev [x & xs]]
-   (when (not (nil? x))
-     (lazy-seq
-      (if (p prev x)
-        (cons x (cons v (sol p v x xs)))
-        (cons x (sol p v x xs)))))))
-
-(defn sol [p v [x y & xs]]
+(defn sol [p v [x y & xs :as col]]
   (cond
-    (nil? y) x
-    (not (nil? x)) (lazy-seq (if (p x y)
+    (empty? col) []
+    (and (not (nil? x)) (not (nil? y))) (lazy-seq (if (p x y)
                                (cons x (cons v (sol p v (cons y xs))))
-                               (cons x (sol p v (cons y xs)))))))
+                               (cons x (sol p v (cons y xs)))))
+
+    (nil? y) [x]))
 
 (= '(1 :less 6 :less 7 4 3) (sol < :less [1 6 7 4 3]))
 
@@ -42,3 +35,18 @@
                  (sol (fn [a b] ; both even or both odd
                        (= (mod a 2) (mod b 2)))
                      :same))))
+
+;; others
+(fn [c v s]
+  (mapcat (fn [[a b]] (if (and a b (c a b)) (list a v) (list a)))
+          (partition-all 2 1 s)))
+
+(fn [p k coll]
+  (when-let [[x & xs] (seq coll)]
+    (cons x (mapcat #(if (p % %2) [k %2] [%2]) coll xs))))
+
+(fn ins [f v [h & t]]
+  (cond
+    (nil? h) []
+    (nil? t) [h]
+    :else (lazy-cat [h] (if (f h (first t)) [v]) (ins f v t))))
