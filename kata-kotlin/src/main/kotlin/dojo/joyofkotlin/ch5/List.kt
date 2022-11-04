@@ -81,6 +81,13 @@ sealed class List<A> {
      */
     fun reverse2(): List<A> = foldLeft(invoke()) { acc -> { Cons(it, acc) } }
 
+    /**
+     * p.231 5-12
+     */
+    fun <B> foldLeftViaRight(acc: B, f: (B) -> (A) -> B): B =
+        foldRight({ p: B -> p }) { x -> { r -> { z -> r(f(z)(x)) } } }(acc)
+
+    fun <B> foldRightViaLeft(identity: B, f: (A) -> (B) -> B): B = foldLeft({p: B -> p}){r -> {x -> {z -> r(f(x)(z))}}}(identity)
     companion object {
         operator fun <A> invoke(vararg az: A): List<A> =
             az.foldRight(Nil as List<A>) { a: A, list: List<A> -> Cons(a, list) }
@@ -178,4 +185,11 @@ fun main() {
 
     println(List(1, 2, 3, 4).init())
     println(sum(List(1, 2, 3, 4)))
+
+    println("==================")
+    val x = List(6, 5, 4)
+    x.foldLeft(0) { z -> { x -> z - x } }.run(::println)
+    x.foldRight(0) { x -> { z -> x - z } }.run(::println)
+    x.foldLeftViaRight(0){ z -> { x -> z - x } }.run(::println)
+    x.foldRightViaLeft(0) { x -> { z -> x - z } }.run(::println)
 }
