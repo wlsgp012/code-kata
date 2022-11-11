@@ -1,21 +1,22 @@
 package dojo.joyofkotlin.ch5
 
-import dojo.joyofkotlin.ch5.List.*
+import dojo.joyofkotlin.ch5.List.Cons
+import dojo.joyofkotlin.ch5.List.Empty
 
 sealed class List<A> {
     abstract fun isEmpty(): Boolean
 
-    abstract fun concat(list: List<A>): List<A>
+    fun concat(list: List<A>): List<A> = concatViaRight(this, list)
 
     abstract class Empty<A> : List<A>() {
-        override fun concat(list: List<A>): List<A> = list
+//        override fun concat(list: List<A>): List<A> = list
         override fun isEmpty(): Boolean = true
     }
 
     private object Nil : Empty<Nothing>()
     class Cons<A>(val head: A, val tail: List<A>) : List<A>() {
         override fun isEmpty(): Boolean = false
-        override fun concat(list: List<A>): List<A> = Cons(this.head, list.concat(this.tail))
+//        override fun concat(list: List<A>): List<A> = Cons(this.head, list.concat(this.tail))
 
         override fun toString(): String = "[${toString("", this)}NIL]"
         private tailrec fun toString(acc: String, list: List<A>): String =
@@ -87,7 +88,9 @@ sealed class List<A> {
     fun <B> foldLeftViaRight(acc: B, f: (B) -> (A) -> B): B =
         foldRight({ p: B -> p }) { x -> { r -> { z -> r(f(z)(x)) } } }(acc)
 
-    fun <B> foldRightViaLeft(identity: B, f: (A) -> (B) -> B): B = foldLeft({p: B -> p}){r -> {x -> {z -> r(f(x)(z))}}}(identity)
+    fun <B> foldRightViaLeft(identity: B, f: (A) -> (B) -> B): B =
+        foldLeft({ p: B -> p }) { r -> { x -> { z -> r(f(x)(z)) } } }(identity)
+
     companion object {
         operator fun <A> invoke(vararg az: A): List<A> =
             az.foldRight(Nil as List<A>) { a: A, list: List<A> -> Cons(a, list) }
@@ -132,8 +135,16 @@ sealed class List<A> {
                 is Empty -> acc
                 is Cons -> foldLeft(f(acc)(list.head), list.tail, f)
             }
+
+        /**
+         * p.233 5-14
+         */
+        fun <A> concatViaRight(xs: List<A>, ys: List<A>): List<A> = xs.foldRight(ys) { x -> { r -> Cons(x, r) } }
+
+        fun <A> concatViaLeft(xs: List<A>, ys: List<A>): List<A> = xs.reverse().foldLeft(ys) { r -> r::cons }
     }
 }
+
 
 /**
  * p.218 5-6
@@ -180,7 +191,9 @@ fun main() {
     val drop = list.drop(30000)
     println(drop)
 
-    val concat = List(1, 2, 3).concat(List(4, 5, 6))
+    val a = List(1, 2, 3)
+    val b = List(4, 5, 6)
+    val concat = a.concat(b)
     println(concat)
 
     println(List(1, 2, 3, 4).init())
@@ -190,6 +203,9 @@ fun main() {
     val x = List(6, 5, 4)
     x.foldLeft(0) { z -> { x -> z - x } }.run(::println)
     x.foldRight(0) { x -> { z -> x - z } }.run(::println)
-    x.foldLeftViaRight(0){ z -> { x -> z - x } }.run(::println)
+    x.foldLeftViaRight(0) { z -> { x -> z - x } }.run(::println)
     x.foldRightViaLeft(0) { x -> { z -> x - z } }.run(::println)
+    println("==================")
+    List.concatViaLeft(a, b).run(::println)
+    List.concatViaRight(a, b).run(::println)
 }
