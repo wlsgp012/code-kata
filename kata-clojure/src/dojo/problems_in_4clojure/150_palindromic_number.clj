@@ -9,6 +9,7 @@
       (cons x n)
       n)))
 
+;; also slow
 (defn sol [x]
   (let [palindrome? (fn c [xs] (if (seq xs)
                                  (and (= (first xs) (last xs)) (c (drop-last (rest xs))))
@@ -44,3 +45,5 @@
 
          (= (nth (sol 0) 10101)
             9102019))
+
+;; others
