@@ -9,7 +9,7 @@ sealed class List<A> {
     fun concat(list: List<A>): List<A> = concatViaRight(this, list)
 
     abstract class Empty<A> : List<A>() {
-//        override fun concat(list: List<A>): List<A> = list
+        //        override fun concat(list: List<A>): List<A> = list
         override fun isEmpty(): Boolean = true
     }
 
@@ -91,6 +91,27 @@ sealed class List<A> {
     fun <B> foldRightViaLeft(identity: B, f: (A) -> (B) -> B): B =
         foldLeft({ p: B -> p }) { r -> { x -> { z -> r(f(x)(z)) } } }(identity)
 
+    /**
+     * p.236 5-18
+     */
+    fun <B> map(f: (A) -> B): List<B> = foldRightViaLeft(invoke()) { x -> { r -> Cons(f(x), r) } }
+
+    /**
+     * p.236 5-19
+     */
+    fun filter(p: (A) -> Boolean): List<A> = foldRightViaLeft(invoke()) { x -> { r -> if (p(x)) Cons(x, r) else r } }
+
+    /**
+     * p.237 5-20
+     */
+    fun <B> flatMap(f: (A) -> List<B>): List<B> = foldRightViaLeft(invoke()) { x -> { r -> f(x).concat(r) } }
+    fun <B> flatMap2(f: (A) -> List<B>): List<B> = flatten(map(f))
+
+    /**
+     * p.237 5-21
+     */
+    fun filter2(p: (A) -> Boolean): List<A> = flatMap { x -> if (p(x)) invoke(x) else invoke() }
+
     companion object {
         operator fun <A> invoke(vararg az: A): List<A> =
             az.foldRight(Nil as List<A>) { a: A, list: List<A> -> Cons(a, list) }
@@ -142,9 +163,13 @@ sealed class List<A> {
         fun <A> concatViaRight(xs: List<A>, ys: List<A>): List<A> = xs.foldRight(ys) { x -> { r -> Cons(x, r) } }
 
         fun <A> concatViaLeft(xs: List<A>, ys: List<A>): List<A> = xs.reverse().foldLeft(ys) { r -> r::cons }
+
+        /**
+         * p.234 5-15
+         */
+        fun <A> flatten(xs: List<List<A>>): List<A> = xs.foldRight(Nil as List<A>) { x -> { r -> x.concat(r) } }
     }
 }
-
 
 /**
  * p.218 5-6
@@ -185,6 +210,14 @@ tailrec fun <A, B> foldLeft(acc: B, list: List<A>, f: (B) -> (A) -> B): B =
 fun sumByFoldLeft(ints: List<Int>): Int = foldLeft(0, ints) { acc -> { x -> acc + x } }
 fun productByFoldLeft(ds: List<Double>): Double = foldLeft(1.0, ds) { acc -> { x -> acc * x } }
 fun lengthByFoldLeft(xs: List<*>): Int = foldLeft(0, xs) { acc -> { acc + 1 } }
+
+/**
+ * p.235 5-16
+ */
+fun triple(xs: List<Int>): List<Int> = xs.foldRight(List()) { x -> { r -> Cons(x * 3, r) } }
+
+fun doubleToString(xs: List<Double>): List<String> = xs.foldRight(List()) { x -> { r -> Cons(x.toString(), r) } }
+
 fun main() {
     val list = (1..30000).fold(List(0)) { l, i -> l.cons(i) }
 //    val drop = list.drop2(9999)
