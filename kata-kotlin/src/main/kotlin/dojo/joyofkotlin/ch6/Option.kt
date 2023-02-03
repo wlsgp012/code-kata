@@ -40,4 +40,32 @@ sealed class Option<out A> {
         is None -> defaultFn()
         is Some -> value
     }
+
+    /**
+     * p.254 6-3
+     */
+    fun <B> map(f: (A) -> B): Option<B> = when (this) {
+        is None -> None
+        is Some -> Some(f(value))
+    }
+
+    /**
+     * p.255 6-4
+     */
+    fun <B> flatMap_(f: (A) -> Option<B>): Option<B> = when (this) {
+        is None -> None
+        is Some -> f(value)
+    }
+
+    fun <B> flatMap(f: (A) -> Option<B>): Option<B> = map(f).getOrElse(None)
+
+    /**
+     * p.255 6-5
+     */
+    fun orElse(default: () -> Option<@UnsafeVariance A>): Option<A> = map { this }.getOrElse(default)
+
+    /**
+     * p.257 6-6
+     */
+    fun filter(p: (A) -> Boolean): Option<A> = flatMap { if(p(it)) Some(it) else None }
 }
