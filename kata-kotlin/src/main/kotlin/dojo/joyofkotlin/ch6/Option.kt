@@ -1,5 +1,7 @@
 package dojo.joyofkotlin.ch6
 
+import kotlin.math.pow
+
 sealed class Option<out A> {
     abstract fun isEmpty(): Boolean
 
@@ -67,5 +69,61 @@ sealed class Option<out A> {
     /**
      * p.257 6-6
      */
-    fun filter(p: (A) -> Boolean): Option<A> = flatMap { if(p(it)) Some(it) else None }
+    fun filter(p: (A) -> Boolean): Option<A> = flatMap { if (p(it)) Some(it) else None }
 }
+
+/**
+ * p.260 6-7
+ */
+val mean: (List<Double>) -> Option<Double> = {
+    if (it.isEmpty()) {
+        Option()
+    } else {
+        Option(it.sum() / it.size)
+    }
+}
+val variance_: (List<Double>) -> Option<Double> = { list ->
+    mean(list).map { m ->
+        list.sumOf { (it - m).pow(2.0) } / list.size
+    }
+}
+val variance: (List<Double>) -> Option<Double> = { list ->
+    mean(list).flatMap { m ->
+        mean(list.map { (it - m).pow(2) })
+    }
+}
+
+/**
+ * p.262 6-8
+ */
+fun <A, B> lift(f: (A) -> B): (Option<A>) -> Option<B> = { it.map(f) }
+
+/**
+ * p.263 6-9
+ */
+fun <A, B> lift2(f: (A) -> B): (Option<A>) -> Option<B> = {
+    try {
+        it.map(f)
+    } catch (e: Exception) {
+        Option()
+    }
+}
+
+fun <A, B> hLift(f: (A) -> B): (A) -> Option<B> = {
+    try {
+        Option(f(it))
+    } catch (e: Exception) {
+        Option()
+    }
+}
+
+/**
+ * p.264 6-10
+ */
+fun <A, B, C> map2(oa: Option<A>, ob: Option<B>, f: (A) -> (B) -> C): Option<C> =
+//    oa.map { a -> f(a) }.flatMap { lift(it)(ob) }
+    oa.flatMap { a ->
+        ob.map { b ->
+            f(a)(b)
+        }
+    }
