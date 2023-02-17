@@ -1,6 +1,8 @@
 package dojo.joyofkotlin.ch6
 
+import kotlin.collections.List
 import kotlin.math.pow
+import dojo.joyofkotlin.ch5.List as FList
 
 sealed class Option<out A> {
     abstract fun isEmpty(): Boolean
@@ -12,7 +14,7 @@ sealed class Option<out A> {
 
         override fun hashCode(): Int = 0
 
-        override fun toString(): String = "Nne"
+        override fun toString(): String = "None"
     }
 
     internal data class Some<out A>(internal val value: A) : Option<A>() {
@@ -64,6 +66,7 @@ sealed class Option<out A> {
     /**
      * p.255 6-5
      */
+    fun orElse(default: Option<@UnsafeVariance A>): Option<A> = map { this }.getOrElse(default)
     fun orElse(default: () -> Option<@UnsafeVariance A>): Option<A> = map { this }.getOrElse(default)
 
     /**
@@ -127,3 +130,37 @@ fun <A, B, C> map2(oa: Option<A>, ob: Option<B>, f: (A) -> (B) -> C): Option<C> 
             f(a)(b)
         }
     }
+
+/**
+ * p.266 6-11
+ */
+fun <A> sequence_(list: FList<Option<A>>): Option<FList<A>> {
+    return list.foldRight(Option(FList())) { ao ->
+        { o ->
+            map2(o, ao) { x -> { y -> x.cons(y) } }
+//            o.flatMap { xs -> ao.map { a -> xs.cons(a) } }
+        }
+    }
+}
+
+fun <A> sequence(list: FList<Option<A>>): Option<FList<A>> = traverse(list) { it }
+
+/**
+ * p.267 6-12
+ */
+fun <A, B> traverse(list: FList<A>, f: (A) -> Option<B>): Option<FList<B>> =
+    list.foldRight(Option(FList())) { a ->
+        { o -> map2(o, f(a)) { x -> { y -> x.cons(y) } } }
+    }
+
+fun main() {
+    val parseWithRadix: (Int) -> (String) -> Int = { radix ->
+        { s ->
+            Integer.parseInt(s, radix)
+        }
+    }
+    val parse16 = hLift(parseWithRadix(16))
+    val list = FList("4", "5", "6", "7", "A")
+    sequence(list.map(parse16)).run(::println)
+    sequence(FList("1", "z", "2").map(parse16)).run(::println)
+}
