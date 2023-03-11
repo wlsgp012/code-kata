@@ -135,23 +135,133 @@ DefaultParams2.func([99], "dog")
 
 ## ex) 6-6
 defmodule Chop do
-  def guess(n, f..l) do
-    guess(n, f..l, div(l, 2))
+  defp half(f..l), do: div(f + l, 2)
+
+  defp print(h), do: IO.puts("It is #{h}")
+
+  def guess(n, range) do
+    guess(n, range, half(range))
   end
 
-  def guess(n, f..l, h) when h == n do
+  def guess(n, range, h) when h == n do
+    print(h)
     n
   end
 
   def guess(n, f..l, h) when h > n do
-    IO.puts("It is #{h}")
-    guess(n, f..h, div(f + h, 2))
+    print(h)
+    guess(n, f..h, half(f..h))
   end
 
   def guess(n, f..l, h) do
-    IO.puts("It is #{h}")
-    guess(n, h..l, div(h + l, 2))
+    print(h)
+    guess(n, h..l, half(h..l))
   end
 end
 
 Chop.guess(273, 1..1000)
+
+## 6.7 pipe operator
+1..10 |> Enum.map(&(&1 * &1)) |> Enum.filter(&(&1 < 40))
+
+## 6.8 module
+defmodule Outer do
+  defmodule Inner do
+    def inner_func do
+    end
+  end
+
+  def outer_func do
+    Inner.inner_func()
+  end
+end
+
+Outer.outer_func()
+Outer.Inner.inner_func()
+
+defmodule Mix.Tasks.Doctest do
+  def run do
+  end
+end
+
+### import
+defmodule ImportExample do
+  def func1 do
+    List.flatten([1, [2, 3], 4])
+  end
+
+  def func2 do
+    import List, only: [flatten: 1]
+    flatten([1, [2, 3], 4])
+  end
+end
+
+ImportExample.func1()
+ImportExample.func2()
+
+defmodule AliasExample do
+  def compile_and_go(source) do
+    alias Enum, as: E
+    source |> E.map(&(&1 * 10)) |> E.filter(&(&1 > 40))
+  end
+
+  def abc() do
+    # alias My.Other.Module.{Parser, Runner}
+  end
+end
+
+1..10 |> Enum.to_list() |> AliasExample.compile_and_go()
+
+1..10 |> Enum.to_list() |> Enum.map(&(&1 * 10)) |> Enum.filter(&(&1 < 40))
+# wired result
+1..10 |> Enum.to_list() |> Enum.map(&(&1 * 10)) |> Enum.filter(&(40 < &1))
+# wired result
+1..10 |> Enum.to_list() |> Enum.map(&(&1 * 10)) |> Enum.filter(&(&1 == 40))
+
+## 6.9 attribute
+defmodule Attr do
+  @author "Dave Thomas"
+  def get_author do
+    @author
+  end
+end
+
+IO.puts("This book was written by #{Attr.get_author()}")
+
+defmodule Attr2 do
+  @attr "one"
+  def first, do: @attr
+  @attr "two"
+  def second, do: @attr
+end
+
+IO.puts("#{Attr2.second()} #{Attr2.first()}")
+
+## 6.10 module names
+is_atom(IO)
+to_string(IO)
+:"Elixir.IO" === IO
+IO.puts(123)
+:"Elixir.IO".puts(123)
+
+my_io = IO
+my_io.puts(123)
+
+## 6.11 calling a function in an erlang library
+:io.format("The number is ~3.1f~n", [5.678])
+
+## ex) 6-7
+# – Convert a float to a string with two decimal digits. (Erlang)
+:io_lib.format("~.2f", [2.2222])
+# – Get the value of an operating-system environment variable. (Elixir)
+System.get_env()
+
+# – Return the extension component of a file name (so return .exs if given "dave/test.exs"). (Elixir)
+Path.extname("dave/test.exs")
+# – Return the process’s current working directory. (Elixir)
+File.cwd
+# – Convert a string containing JSON into Elixir data structures. (Just find; don’t install.)
+https://hex.pm/packages/poison
+https://hex.pm/packages/jason
+# – Execute a command in your operating system’s shell.
+System.cmd
