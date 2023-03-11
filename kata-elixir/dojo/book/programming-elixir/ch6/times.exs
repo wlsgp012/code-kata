@@ -70,3 +70,88 @@ end
 Guard.what_is(99)
 Guard.what_is(:cat)
 Guard.what_is([1, 2, 3])
+
+defmodule Factorial2 do
+  def of(0), do: 1
+
+  def of(n) when is_integer(n) and n > 0 do
+    n * of(n - 1)
+  end
+end
+
+Factorial2.of(-1)
+
+## 6.5 default parameter
+defmodule Example do
+  def func(p1, p2 \\ 2, p3 \\ 3, p4) do
+    IO.inspect([p1, p2, p3, p4])
+  end
+end
+
+Example.func("a", "b")
+Example.func("a", "b", "c")
+Example.func("a", "b", "c", "d")
+
+defmodule DefaultParams1 do
+  def func(p1, p2 \\ 123) do
+    IO.inspect([p1, p2])
+  end
+
+  def func(p1, 99) do
+    IO.puts("you said 99")
+  end
+end
+
+defmodule DefaultParams2 do
+  def func(p1, p2 \\ 123)
+
+  def func(p1, p2) when is_list(p1) do
+    "You said ${p2} with a list"
+  end
+
+  def func(p1, p2) do
+    "You passed in #{p1} and #{p2}"
+  end
+end
+
+DefaultParams2.func(99)
+
+defmodule DefaultParams2 do
+  def func(p1, p2 \\ 123)
+
+  def func(p1, p2) when is_list(p1) do
+    "You said #{p2} with a list"
+  end
+
+  def func(p1, p2) do
+    "You passed in #{p1} and #{p2}"
+  end
+end
+
+DefaultParams2.func(99)
+DefaultParams2.func(99, "cat")
+DefaultParams2.func([99])
+DefaultParams2.func([99], "dog")
+
+## ex) 6-6
+defmodule Chop do
+  def guess(n, f..l) do
+    guess(n, f..l, div(l, 2))
+  end
+
+  def guess(n, f..l, h) when h == n do
+    n
+  end
+
+  def guess(n, f..l, h) when h > n do
+    IO.puts("It is #{h}")
+    guess(n, f..h, div(f + h, 2))
+  end
+
+  def guess(n, f..l, h) do
+    IO.puts("It is #{h}")
+    guess(n, h..l, div(h + l, 2))
+  end
+end
+
+Chop.guess(273, 1..1000)
