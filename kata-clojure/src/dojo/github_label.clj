@@ -1,0 +1,1 @@
+(ns dojo.github-label)
