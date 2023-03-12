@@ -163,6 +163,7 @@ Chop.guess(273, 1..1000)
 
 ## 6.7 pipe operator
 1..10 |> Enum.map(&(&1 * &1)) |> Enum.filter(&(&1 < 40))
+1..10 |> Enum.map(&(&1 * &1)) |> Enum.filter(&(&1 > 40)) |> List.to_tuple()
 
 ## 6.8 module
 defmodule Outer do
