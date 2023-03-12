@@ -1,4 +1,4 @@
-package dojo.recursion
+package dojo.etc.recursion
 
 tailrec fun tailRecursion(n: Int): Int = when (n) {
     0 -> 0

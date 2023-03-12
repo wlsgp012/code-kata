@@ -1,4 +1,4 @@
-package dojo.trampoline
+package dojo.etc.trampoline
 
 sealed class Bounce<A>
 data class Done<A>(val result: A) : Bounce<A>()

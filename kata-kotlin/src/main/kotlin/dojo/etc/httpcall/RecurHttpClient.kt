@@ -1,4 +1,4 @@
-package dojo.httpcall
+package dojo.etc.httpcall
 
 import java.net.HttpURLConnection
 import java.net.URL

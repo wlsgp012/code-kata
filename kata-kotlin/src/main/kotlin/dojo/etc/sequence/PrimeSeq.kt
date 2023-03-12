@@ -1,4 +1,4 @@
-package dojo.sequence
+package dojo.etc.sequence
 
 private fun primes(start: Int): Sequence<Int> = sequence {
     println("Starting to look")

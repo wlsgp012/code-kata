@@ -1,4 +1,4 @@
-package dojo.double
+package dojo.etc.double
 
 import java.util.stream.IntStream
 import kotlin.streams.toList

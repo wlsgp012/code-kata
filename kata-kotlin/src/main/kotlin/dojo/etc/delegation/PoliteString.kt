@@ -1,4 +1,4 @@
-package dojo.delegation
+package dojo.etc.delegation
 
 import kotlin.reflect.KProperty
 

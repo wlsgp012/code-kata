@@ -1,4 +1,4 @@
-package dojo.copytest
+package dojo.etc.copytest
 
 data class Person(val name: String, val nickName: List<String>)
 

@@ -1,4 +1,4 @@
-package dojo.delegation
+package dojo.etc.delegation
 
 import kotlin.properties.Delegates.observable
 import kotlin.properties.Delegates.vetoable

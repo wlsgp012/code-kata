@@ -1,4 +1,4 @@
-package dojo.datasharing
+package dojo.etc.datasharing
 
 fun main() {
     val x = listOf(1, 2, 3)

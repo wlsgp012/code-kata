@@ -1,7 +1,7 @@
-package dojo.dsl
+package dojo.etc.dsl
 
-import dojo.dsl.DateUtil.Tense.ago
-import dojo.dsl.DateUtil.Tense.from_now
+import dojo.etc.dsl.DateUtil.Tense.ago
+import dojo.etc.dsl.DateUtil.Tense.from_now
 import java.util.Calendar
 
 infix fun Int.days(timing: DateUtil.Tense) = DateUtil(this, timing)

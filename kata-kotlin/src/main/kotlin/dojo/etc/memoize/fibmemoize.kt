@@ -1,4 +1,4 @@
-package dojo.memoize
+package dojo.etc.memoize
 
 import kotlin.system.measureTimeMillis
 

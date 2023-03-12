@@ -1,4 +1,4 @@
-package dojo.dsl
+package dojo.etc.dsl
 
 infix fun String.meeting(block: Meeting.() -> Unit) {
     val meeting = Meeting(this)
