@@ -5,7 +5,7 @@ import java.io.Serializable
 
 sealed class Result<out A> : Serializable {
     internal class Failure<out A>(
-        internal val exception: RuntimeException
+        internal val exception: RuntimeException,
     ) : Result<A>() {
         override fun toString(): String {
             return "Failure(${exception.message})"
@@ -13,7 +13,7 @@ sealed class Result<out A> : Serializable {
     }
 
     internal class Success<out A>(
-        internal val value: A
+        internal val value: A,
     ) : Result<A>() {
         override fun toString(): String {
             return "Success($value)"
@@ -76,6 +76,7 @@ sealed class Result<out A> : Serializable {
             }
         }
     }
+
 }
 
 fun <K, V> Map<K, V>.getResult(key: K) = when {
@@ -83,7 +84,7 @@ fun <K, V> Map<K, V>.getResult(key: K) = when {
     else -> Result.failure("Key $key not found in map")
 }
 
-data class Toon (
+data class Toon(
     val firstName: String,
     val lastName: String,
     val email: Result<String>,

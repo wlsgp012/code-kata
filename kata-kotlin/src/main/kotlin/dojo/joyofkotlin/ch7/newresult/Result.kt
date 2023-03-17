@@ -28,16 +28,64 @@ sealed class Result<out A> : Serializable {
         }
     }
 
+    /**
+     * p.288 7-5
+     */
+    fun filter(p: (A) -> Boolean): Result<A> = flatMap { if (p(it)) this else Result.invoke() }
+    fun filter(p: (A) -> Boolean, message: String): Result<A> = flatMap { if (p(it)) this else Result.failure(message) }
+
+    /**
+     * p.289 7-6
+     */
+//    fun exists(p: (A) -> Boolean): Boolean = filter(p) is Success
+    fun exists(p: (A) -> Boolean): Boolean = map(p).getOrElse(false)
+
+    /**
+     * p.290 7-7
+     */
+    abstract fun mapFailure(message: String): Result<A>
+
+    /**
+     * p.293 7-9
+     */
+    fun forEach(effect: (A) -> Unit) {
+        when (this) {
+            is Success -> effect(this.value)
+            else -> {}
+        }
+    }
+
+    /**
+     * p.293 7-10
+     */
+    fun forEachOrElse(onSuccess: (A) -> Unit, onFailure: (RuntimeException) -> Unit, onEmpty: () -> Unit) {
+        when (this) {
+            is Success -> onSuccess(this.value)
+            is Failure -> onFailure(this.exception)
+            is Empty -> onEmpty()
+        }
+    }
+
+    /**
+     * p.294 7-11
+     */
+    fun forEach(onSuccess: (A) -> Unit = {}, onFailure: (RuntimeException) -> Unit = {}, onEmpty: () -> Unit = {}) {
+        forEachOrElse(onSuccess, onFailure, onEmpty)
+    }
+
     internal object Empty : Result<Nothing>() {
         override fun <B> map(f: (Nothing) -> B): Result<B> = Empty
         override fun <B> flatMap(f: (Nothing) -> Result<B>): Result<B> = Empty
+        override fun mapFailure(message: String): Result<Nothing> = this
+
         override fun toString(): String = "Empty"
     }
 
-    internal class Failure<out A>(private val exception: RuntimeException) : Result<A>() {
+    internal class Failure<out A>(val exception: RuntimeException) : Result<A>() {
         override fun <B> map(f: (A) -> B): Result<B> = Failure(exception)
 
         override fun <B> flatMap(f: (A) -> Result<B>): Result<B> = Failure(exception)
+        override fun mapFailure(message: String): Result<A> = failure(RuntimeException(message, this.exception))
         override fun toString(): String = "Failure(${exception.message})"
     }
 
@@ -58,10 +106,30 @@ sealed class Result<out A> : Serializable {
             Failure(RuntimeException(e))
         }
 
+        override fun mapFailure(message: String): Result<A> = this
+
         override fun toString(): String = "Success($value)"
     }
 
     companion object {
+        /**
+         * p.291 7-8
+         */
+        operator fun <A> invoke(a: A? = null, message: String): Result<A> = when (a) {
+            null -> Failure(NullPointerException(message))
+            else -> Success(a)
+        }
+
+        operator fun <A> invoke(a: A? = null, p: (A) -> Boolean): Result<A> = when (a) {
+            null -> Failure(NullPointerException())
+            else -> if (p(a)) Success(a) else Empty
+        }
+
+        operator fun <A> invoke(a: A? = null, message: String, p: (A) -> Boolean): Result<A> = when (a) {
+            null -> Failure(NullPointerException())
+            else -> if (p(a)) Success(a) else failure(IllegalArgumentException(message))
+        }
+
         operator fun <A> invoke(a: A? = null): Result<A> = when (a) {
             null -> Failure(NullPointerException())
             else -> Success(a)
@@ -83,7 +151,31 @@ fun <K, V> Map<K, V>.getResult(key: K) = when {
     else -> Result.Empty
 }
 
-data class Toon (
+/**
+ * p.296 7-12
+ */
+fun <A, B> lift(f: (A) -> B): (Result<A>) -> Result<B> = { it.map(f) }
+
+/**
+ * p.296 7-13
+ */
+fun <A, B, C> lift2(f: (A) -> (B) -> C): (Result<A>) -> (Result<B>) -> Result<C> = { ra ->
+    { rb ->
+//        rb.flatMap { b -> ra.map { a -> f(a)(b) } }
+//        ra.flatMap { a -> rb.map { b -> f(a)(b) } }
+        ra.map(f).flatMap(rb::map)
+    }
+}
+
+fun <A, B, C, D> lift3(f: (A) -> (B) -> (C) -> D): (Result<A>) -> (Result<B>) -> (Result<C>) -> Result<D> =
+    { ra -> { rb -> { rc -> ra.map(f).flatMap(rb::map).flatMap(rc::map) } } }
+
+/**
+ * p.297 7-14
+ */
+fun <A, B, C> map2(ra: Result<A>, rb: Result<B>, f: (A) -> (B) -> C): Result<C> = lift2(f)(ra)(rb)
+
+data class Toon(
     val firstName: String,
     val lastName: String,
     val email: Result<String>,

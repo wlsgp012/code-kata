@@ -19,11 +19,12 @@ sealed class Either<out E, out A> {
     /**
      * p.277 7-3
      */
-    fun getOrElse(defaultValue: () -> @UnsafeVariance A): A = when(this){
+    fun getOrElse(defaultValue: () -> @UnsafeVariance A): A = when (this) {
         is Left -> defaultValue()
         is Right -> this.value
     }
-    fun orElse(defaultValue: () -> Either<@UnsafeVariance E, @UnsafeVariance A>): Either<E, A> = when(this){
+
+    fun orElse(defaultValue: () -> Either<@UnsafeVariance E, @UnsafeVariance A>): Either<E, A> = when (this) {
         is Left -> defaultValue()
         is Right -> this
     }
