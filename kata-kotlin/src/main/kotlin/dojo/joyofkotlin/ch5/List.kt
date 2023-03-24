@@ -2,6 +2,7 @@ package dojo.joyofkotlin.ch5
 
 import dojo.joyofkotlin.ch5.List.Cons
 import dojo.joyofkotlin.ch5.List.Empty
+import dojo.joyofkotlin.ch7.Result
 
 sealed class List<A> {
     abstract fun isEmpty(): Boolean
@@ -13,9 +14,18 @@ sealed class List<A> {
         override fun isEmpty(): Boolean = true
     }
 
-    private object Nil : Empty<Nothing>()
+    private object Nil : Empty<Nothing>() {
+        override fun lengthMemoized(): Int = 0
+        override fun headSafe(): Result<Nothing> = Result()
+    }
+
     class Cons<A>(val head: A, val tail: List<A>) : List<A>() {
+        private val length : Int = tail.lengthMemoized() + 1
+        override fun lengthMemoized(): Int = length
+        override fun headSafe(): Result<A> = Result.invoke(head)
+
         override fun isEmpty(): Boolean = false
+
 //        override fun concat(list: List<A>): List<A> = Cons(this.head, list.concat(this.tail))
 
         override fun toString(): String = "[${toString("", this)}NIL]"
@@ -73,9 +83,19 @@ sealed class List<A> {
     fun <B> foldLeft(acc: B, f: (B) -> (A) -> B): B = Companion.foldLeft(acc, this, f)
 
     /**
-     * p.224 5-7
+     * p.224 5-8
      */
     fun length(): Int = foldRight(0) { { it + 1 } }
+
+    /**
+     * p.307 8-1
+     */
+    abstract fun lengthMemoized(): Int
+
+    /**
+     * p.309 8-2
+     */
+    abstract fun headSafe(): Result<A>
 
     /**
      * p.231 5-11
