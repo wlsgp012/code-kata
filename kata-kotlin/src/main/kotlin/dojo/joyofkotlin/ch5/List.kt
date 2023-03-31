@@ -20,7 +20,7 @@ sealed class List<A> {
     }
 
     class Cons<A>(val head: A, val tail: List<A>) : List<A>() {
-        private val length : Int = tail.lengthMemoized() + 1
+        private val length: Int = tail.lengthMemoized() + 1
         override fun lengthMemoized(): Int = length
         override fun headSafe(): Result<A> = Result.invoke(head)
 
@@ -96,6 +96,18 @@ sealed class List<A> {
      * p.309 8-2
      */
     abstract fun headSafe(): Result<A>
+
+    /**
+     * p.310 8-3
+     */
+//    fun lastSafe(): Result<A> = this.reverse().headSafe()
+    fun lastSafe(): Result<A> = foldLeft(Result()) { _: Result<A> -> { y: A -> Result(y) } }
+
+    /**
+     * p.311 8-4
+     */
+    // pattern matching could be used
+    fun headSafe2(): Result<A> = foldRight(Result()) { x -> { _ -> Result(x) } }
 
     /**
      * p.231 5-11
@@ -261,4 +273,8 @@ fun main() {
     println("==================")
     List.concatViaLeft(a, b).run(::println)
     List.concatViaRight(a, b).run(::println)
+
+    println("==================")
+    println(a.lastSafe())
+    println(List<Int>().lastSafe())
 }

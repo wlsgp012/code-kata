@@ -1,4 +1,4 @@
-package newresult
+package dojo.joyofkotlin.ch7.newresult
 
 import java.io.IOException
 import java.io.Serializable
@@ -22,17 +22,17 @@ sealed class Result<out A> : Serializable {
         else -> try {
             defaultFunction()
         } catch (e: RuntimeException) {
-            Result.failure<A>(e)
+            failure<A>(e)
         } catch (e: Exception) {
-            Result.failure<A>(RuntimeException(e))
+            failure<A>(RuntimeException(e))
         }
     }
 
     /**
      * p.288 7-5
      */
-    fun filter(p: (A) -> Boolean): Result<A> = flatMap { if (p(it)) this else Result.invoke() }
-    fun filter(p: (A) -> Boolean, message: String): Result<A> = flatMap { if (p(it)) this else Result.failure(message) }
+    fun filter(p: (A) -> Boolean): Result<A> = flatMap { if (p(it)) this else invoke() }
+    fun filter(p: (A) -> Boolean, message: String): Result<A> = flatMap { if (p(it)) this else failure(message) }
 
     /**
      * p.289 7-6
