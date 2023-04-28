@@ -1,5 +1,6 @@
 package dojo.joyofkotlin.ch5
 
+import dojo.joyofkotlin.ch5.List.Companion.foldLeft
 import dojo.joyofkotlin.ch5.List.Cons
 import dojo.joyofkotlin.ch5.List.Empty
 import dojo.joyofkotlin.ch7.Result
@@ -82,6 +83,8 @@ sealed class List<A> {
 
     fun <B> foldLeft(acc: B, f: (B) -> (A) -> B): B = Companion.foldLeft(acc, this, f)
 
+    fun <B> foldLeft(acc: B, p: (B) -> Boolean, f: (B) -> (A) -> B): B = Companion.foldLeft(acc, this, p, f)
+
     /**
      * p.224 5-8
      */
@@ -108,6 +111,62 @@ sealed class List<A> {
      */
     // pattern matching could be used
     fun headSafe2(): Result<A> = foldRight(Result()) { x -> { _ -> Result(x) } }
+
+    /**
+     * p.318 8-11
+     */
+    fun <A1, A2> unzip(f: (A) -> Pair<A1, A2>): Pair<List<A1>, List<A2>> =
+        foldRightViaLeft(Pair(invoke(), invoke())) { a ->
+            { (a1List, a2List) ->
+                f(a).let { (a1, a2) -> a1List.cons(a1) to a2List.cons(a2) }
+            }
+        }
+
+    /**
+     * p.319 8-12
+     */
+    fun getAt(index: Int): Result<A> =
+        Pair(Result.failure<A>("Index out of bound"), index).let {
+            if (index < 0 || index >= length()) it
+            else foldLeft(it) { acc ->
+                { a ->
+                    if (acc.second < 0) acc
+                    else Pair(Result(a), acc.second - 1)
+                }
+            }
+        }.first
+
+    fun getAt_(index: Int): Result<A> {
+        tailrec fun <A> process(list: Cons<A>, i: Int): Result<A> =
+            if (index == 0) Result(list.head)
+            else process(list.tail as Cons, i - 1)
+        return if (index < 0 || index >= length()) Result.failure("Index out of bound")
+        else process(this as Cons, index)
+    }
+
+    // not tail recursion
+    fun getAt__(index: Int): Result<A> {
+        tailrec fun <A> process(list: Cons<A>, i: Int): Result<A> =
+            (list as Cons).let {
+                if (index == 0) Result(list.head)
+                else process(list.tail as Cons, i - 1)
+            }
+        return if (index < 0 || index >= length()) Result.failure("Index out of bound")
+        else process(this as Cons, index)
+    }
+
+    /**
+     * p.322 8-13
+     */
+    fun getAt_13(index: Int): Result<A> =
+        Pair(Result.failure<A>("Index out of bound"), index).let {
+            if (index < 0 || index >= length()) it
+            else foldLeft(it, { acc -> acc.second < 0 }) { acc ->
+                { a ->
+                    Pair(Result(a), acc.second - 1)
+                }
+            }
+        }.first
 
     /**
      * p.231 5-11
@@ -187,6 +246,12 @@ sealed class List<A> {
             when (list) {
                 is Empty -> acc
                 is Cons -> foldLeft(f(acc)(list.head), list.tail, f)
+            }
+
+        fun <A, B> foldLeft(acc: B, list: List<A>, p: (B) -> Boolean, f: (B) -> (A) -> B): B =
+            when (list) {
+                is Empty -> acc
+                is Cons -> if (p(acc)) acc else foldLeft(f(acc)(list.head), list.tail, p, f)
             }
 
         /**
@@ -277,4 +342,8 @@ fun main() {
     println("==================")
     println(a.lastSafe())
     println(List<Int>().lastSafe())
+
+    println("==================")
+    println(a.getAt(1))
+    println(a.getAt_13(1))
 }

@@ -53,4 +53,17 @@ fun <A, B, C> zipWith(xs: List<A>, ys: List<B>, f: (A) -> (B) -> C): List<C> {
 /**
  * p.317 8-9
  */
-fun <A, B, C> product(xs: List<A>, ys: List<B>, f: (A) -> (B) -> C): List<C> = xs.flatMap { x -> ys.map{ y -> f(x)(y)} }
+fun <A, B, C> product(xs: List<A>, ys: List<B>, f: (A) -> (B) -> C): List<C> =
+    xs.flatMap { x -> ys.map { y -> f(x)(y) } }
+
+/**
+ * p.318 8-10
+ */
+fun <A, B> unzip(xs: List<Pair<A, B>>): Pair<List<A>, List<B>> =
+    xs.foldRightViaLeft(Pair(List(), List())) { (a, b) ->
+        { (listA, listB) ->
+            listA.cons(a) to listB.cons(b)
+        }
+    }
+fun <A, B> unzip_(xs: List<Pair<A, B>>): Pair<List<A>, List<B>> = xs.unzip { it }
+
