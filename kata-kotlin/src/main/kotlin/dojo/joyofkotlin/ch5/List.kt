@@ -161,12 +161,40 @@ sealed class List<A> {
     fun getAt_13(index: Int): Result<A> =
         Pair(Result.failure<A>("Index out of bound"), index).let {
             if (index < 0 || index >= length()) it
-            else foldLeft(it, { acc -> acc.second < 0 }) { acc ->
-                { a ->
-                    Pair(Result(a), acc.second - 1)
+            else {
+                foldLeft(it, { acc -> acc.second < 0 }) { acc ->
+                    { a -> Pair(Result(a), acc.second - 1) }
                 }
             }
         }.first
+
+    /**
+     * p.326 8-14
+     */
+    fun splitAt_my(index: Int): Result<Pair<List<A>, List<A>>> {
+        tailrec fun <A> process(target: Cons<A>, result: List<A>, count: Int): Pair<List<A>, List<A>> =
+            if (count == 0) result.reverse2() to target
+            else process(target.tail as Cons, result.cons(target.head), count - 1)
+
+        return if (index < 0 || index >= length()) Result.failure("Index out of bound")
+        else Result(process(this as Cons, invoke(), index))
+    }
+
+    fun splitAt(index: Int): Pair<List<A>, List<A>> {
+        tailrec fun process(acc: List<A>, list: List<A>, i: Int): Pair<List<A>, List<A>> =
+            when (list) {
+                is Empty -> Pair(list.reverse2(), acc)
+                is Cons -> {
+                    if (i == 0) Pair(list.reverse2(), acc)
+                    else process(acc.cons(list.head), list.tail, i - 1)
+                }
+            }
+        return when{
+            index < 0 -> splitAt(0)
+            index > length() -> splitAt(length())
+            else -> process(invoke(), this.reverse2(), this.length() - index)
+        }
+    }
 
     /**
      * p.231 5-11
@@ -251,7 +279,10 @@ sealed class List<A> {
         fun <A, B> foldLeft(acc: B, list: List<A>, p: (B) -> Boolean, f: (B) -> (A) -> B): B =
             when (list) {
                 is Empty -> acc
-                is Cons -> if (p(acc)) acc else foldLeft(f(acc)(list.head), list.tail, p, f)
+                is Cons -> {
+                    println("/${list.head}/ ${p(acc)}")
+                    if (p(acc)) acc else foldLeft(f(acc)(list.head), list.tail, p, f)
+                }
             }
 
         /**
@@ -344,6 +375,12 @@ fun main() {
     println(List<Int>().lastSafe())
 
     println("==================")
-    println(a.getAt(1))
-    println(a.getAt_13(1))
+    val xx = (1..3000).fold(List(0)) { l, i -> l.cons(i) }.reverse2()
+    println(xx.getAt(0))
+    println(xx.getAt_13(0))
+
+    println("==================")
+    val c = List(1, 2, 3, 4)
+    println(c.splitAt(2))
+    println(c.splitAt_my(2))
 }
