@@ -180,7 +180,7 @@ sealed class List<A> {
         else Result(process(this as Cons, invoke(), index))
     }
 
-    fun splitAt(index: Int): Pair<List<A>, List<A>> {
+    fun splitAt_14(index: Int): Pair<List<A>, List<A>> {
         tailrec fun process(acc: List<A>, list: List<A>, i: Int): Pair<List<A>, List<A>> =
             when (list) {
                 is Empty -> Pair(list.reverse2(), acc)
@@ -189,12 +189,36 @@ sealed class List<A> {
                     else process(acc.cons(list.head), list.tail, i - 1)
                 }
             }
-        return when{
-            index < 0 -> splitAt(0)
-            index > length() -> splitAt(length())
+        return when {
+            index < 0 -> splitAt_14(0)
+            index > length() -> splitAt_14(length())
             else -> process(invoke(), this.reverse2(), this.length() - index)
         }
     }
+
+    /**
+     * p.327 8-15
+     */
+    fun splitAt(index: Int): Pair<List<A>, List<A>> =
+        when {
+            index < 0 -> invoke<A>() to this
+            index > length() -> this to invoke()
+            else -> foldLeft(
+                Triple(index, invoke<A>(), this),
+                { (i, acc, target) -> i == 0 || target.isEmpty() }) { (i, acc, target) ->
+                { x -> Triple(i - 1, acc.cons(x), (target as Cons).tail) }
+            }.run { this.second.reverse2() to this.third }
+        }
+
+    /**
+     * p.330 8-16
+     */
+//    fun hasSubList(sub: List<@UnsafeVariance A>): Boolean {
+//        return if (sub.length() > this.length()) sub.hasSubList(this)
+//        else {
+//            sub.foldLeft()
+//        }
+//    }
 
     /**
      * p.231 5-11
@@ -279,10 +303,7 @@ sealed class List<A> {
         fun <A, B> foldLeft(acc: B, list: List<A>, p: (B) -> Boolean, f: (B) -> (A) -> B): B =
             when (list) {
                 is Empty -> acc
-                is Cons -> {
-                    println("/${list.head}/ ${p(acc)}")
-                    if (p(acc)) acc else foldLeft(f(acc)(list.head), list.tail, p, f)
-                }
+                is Cons -> if (p(acc)) acc else foldLeft(f(acc)(list.head), list.tail, p, f)
             }
 
         /**
@@ -381,6 +402,10 @@ fun main() {
 
     println("==================")
     val c = List(1, 2, 3, 4)
-    println(c.splitAt(2))
+    println(c.splitAt_14(2))
     println(c.splitAt_my(2))
+    println(c.splitAt(2))
+    println(c.splitAt_14(0))
+    println(c.splitAt_my(0))
+    println(c.splitAt(0))
 }
