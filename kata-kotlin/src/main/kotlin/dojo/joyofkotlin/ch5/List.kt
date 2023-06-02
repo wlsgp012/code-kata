@@ -213,12 +213,36 @@ sealed class List<A> {
     /**
      * p.330 8-16
      */
-//    fun hasSubList(sub: List<@UnsafeVariance A>): Boolean {
-//        return if (sub.length() > this.length()) sub.hasSubList(this)
-//        else {
-//            sub.foldLeft()
-//        }
-//    }
+    fun startWith(sub: List<@UnsafeVariance A>): Boolean {
+        tailrec fun process(list: List<A>, s: List<A>): Boolean = when (s) {
+            is Empty -> true
+            is Cons -> when (list) {
+                is Empty -> false
+                is Cons -> if (list.head == s.head) process(list.tail, s.tail) else false
+            }
+        }
+        return process(this, sub)
+    }
+
+    fun hasSubList(sub: List<@UnsafeVariance A>): Boolean {
+        tailrec fun process(list: List<A>, s: List<A>): Boolean = when (list) {
+            is Empty -> s.isEmpty()
+            is Cons -> if (list.startWith(s)) true else process(list.tail, s)
+        }
+        return process(this, sub)
+    }
+
+    /**
+     * p.331 8-17
+     */
+    fun <B> groupBy(f: (A) -> B): Map<B, List<A>> =
+        foldLeft(mapOf()) { m ->
+            { x ->
+                val b = f(x)
+                val n = m.getOrDefault(b, invoke()).cons(x)
+                m + (b to n)
+            }
+        }
 
     /**
      * p.231 5-11

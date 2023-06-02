@@ -1,6 +1,7 @@
 package dojo.joyofkotlin.ch8
 
 import dojo.joyofkotlin.ch5.List
+import dojo.joyofkotlin.ch6.Option
 import dojo.joyofkotlin.ch7.newresult.Result
 import dojo.joyofkotlin.ch7.newresult.map2
 
@@ -65,5 +66,34 @@ fun <A, B> unzip(xs: List<Pair<A, B>>): Pair<List<A>, List<B>> =
             listA.cons(a) to listB.cons(b)
         }
     }
+
 fun <A, B> unzip_(xs: List<Pair<A, B>>): Pair<List<A>, List<B>> = xs.unzip { it }
 
+/**
+ * p.333 8-18
+ */
+fun <A, S> unfold_(z: S, f: (S) -> Option<Pair<A, S>>): List<A> =
+    f(z).map{ unfold_(it.second, f).cons(it.first) }.getOrElse(List())
+
+fun <A, S> unfold(z: S, f: (S) -> Option<Pair<A, S>>): List<A> {
+    tailrec fun process(s: S, result: List<A>): List<A> =
+        when (val o = f(s)) {
+            is Option.None -> result.reverse2()
+            is Option.Some -> process(o.value.second, result.cons(o.value.first))
+        }
+    return process(z, List())
+}
+
+/**
+ * p.335 8-19
+ */
+fun range(s: Int, e: Int): List<Int>{
+    return unfold(s){i ->
+        if(i >= e) Option.None else Option(i to i+1)
+    }
+}
+
+fun main() {
+    val x = range(0, 10)
+    print(x)
+}
