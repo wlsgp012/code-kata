@@ -245,6 +245,42 @@ sealed class List<A> {
         }
 
     /**
+     * p.335 8-19
+     */
+    fun exists(p: (A) -> Boolean): Boolean = foldLeft(false, { it }) { _ -> { x -> p(x) } }
+
+    /**
+     * p.336 8-21
+     */
+//    fun forAll(p: (A) -> Boolean): Boolean = foldLeft(true, { !it }) { r -> { x -> r && p(x) }}
+    fun forAll(p: (A) -> Boolean): Boolean = !exists{!p(it)}
+
+    /**
+     * p.338 8-22
+     */
+    fun divide(depth: Int): List<List<A>>{
+        tailrec fun process(list: List<List<A>>, d: Int): List<List<A>> {
+            return when (list){
+                is Empty -> list
+                is Cons -> {
+                    if(list.head.length() < 2 || d < 1){
+                        list
+                    }else{
+                        val xr = list.flatMap { it.splitListAt(it.length() / 2) }
+                        process(xr, d-1)
+                    }
+                }
+            }
+        }
+        return if(isEmpty()) List(this) else process(List(this), depth)
+    }
+
+    fun splitListAt(index: Int): List<List<A>>{
+        val (a, b) = splitAt(index)
+        return List(a, b)
+    }
+
+    /**
      * p.231 5-11
      */
     fun reverse2(): List<A> = foldLeft(invoke()) { acc -> { Cons(it, acc) } }
@@ -432,4 +468,13 @@ fun main() {
     println(c.splitAt_14(0))
     println(c.splitAt_my(0))
     println(c.splitAt(0))
+    println(c.exists { it > 5 })
+    println(c.exists { it == 3 })
+    println(c.forAll { it < 5 })
+    println(c.forAll { it < 3 })
+
+    println("==================")
+    val xs = (1..10).fold(List(0)) { l, i -> l.cons(i) }
+    println(xs.splitListAt(5))
+    println(xs.divide(3))
 }
