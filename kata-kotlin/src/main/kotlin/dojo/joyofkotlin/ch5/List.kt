@@ -4,6 +4,7 @@ import dojo.joyofkotlin.ch5.List.Companion.foldLeft
 import dojo.joyofkotlin.ch5.List.Cons
 import dojo.joyofkotlin.ch5.List.Empty
 import dojo.joyofkotlin.ch7.Result
+import java.util.concurrent.ExecutorService
 
 sealed class List<A> {
     abstract fun isEmpty(): Boolean
@@ -253,29 +254,53 @@ sealed class List<A> {
      * p.336 8-21
      */
 //    fun forAll(p: (A) -> Boolean): Boolean = foldLeft(true, { !it }) { r -> { x -> r && p(x) }}
-    fun forAll(p: (A) -> Boolean): Boolean = !exists{!p(it)}
+    fun forAll(p: (A) -> Boolean): Boolean = !exists { !p(it) }
 
     /**
      * p.338 8-22
      */
-    fun divide(depth: Int): List<List<A>>{
+    fun divide(depth: Int): List<List<A>> {
         tailrec fun process(list: List<List<A>>, d: Int): List<List<A>> {
-            return when (list){
+            return when (list) {
                 is Empty -> list
                 is Cons -> {
-                    if(list.head.length() < 2 || d < 1){
+                    if (list.head.length() < 2 || d < 1) {
                         list
-                    }else{
+                    } else {
                         val xr = list.flatMap { it.splitListAt(it.length() / 2) }
-                        process(xr, d-1)
+                        process(xr, d - 1)
                     }
                 }
             }
         }
-        return if(isEmpty()) List(this) else process(List(this), depth)
+        return if (isEmpty()) List(this) else process(List(this), depth)
     }
 
-    fun splitListAt(index: Int): List<List<A>>{
+    /**
+     * p.340 8-23
+     */
+    fun <B> parFoldLeft(es: ExecutorService, init: B, f: (B) -> (A) -> B, m: (B) -> (B) -> B): Result<B> =
+        try {
+            divide(1024)
+                .map { xs: List<A> -> es.submit<B> { xs.foldLeft(init, f) } }
+                .map { futureB -> futureB.get() }
+                .run {
+                    Result(this.foldLeft(init, m))
+                }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+
+    fun <B> parMap(es: ExecutorService, g: (A) -> B): Result<List<B>> =
+        try {
+            map { x -> es.submit<B> { g(x) } }
+                .map { it.get() }
+                .run { Result(this) }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+
+    fun splitListAt(index: Int): List<List<A>> {
         val (a, b) = splitAt(index)
         return List(a, b)
     }
