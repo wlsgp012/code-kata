@@ -22,6 +22,28 @@ class Lazy<out A>(f: () -> A) : () -> A {
      */
     fun <B> flatmap(h: (A) -> Lazy<B>): Lazy<B> = Lazy { h(c)() }
 
+    /**
+     * p.370 9-10
+     */
+    fun forEach(condition: Boolean, ifTrue: (A) -> Unit, ifFalse: () -> Unit = {}) {
+        if(condition)
+            ifTrue(c)
+        else
+            ifFalse()
+    }
+    fun forEach(condition: Boolean, ifTrue: () -> Unit = {}, ifFalse: (A) -> Unit) {
+        if(condition)
+            ifTrue()
+        else
+            ifFalse(c)
+    }
+    fun forEach(condition: Boolean, ifTrue: (A) -> Unit, ifFalse: (A) -> Unit) {
+        if(condition)
+            ifTrue(c)
+        else
+            ifFalse(c)
+    }
+
     override operator fun invoke(): A = c
 }
 
