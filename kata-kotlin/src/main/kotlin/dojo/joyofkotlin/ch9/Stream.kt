@@ -56,6 +56,29 @@ sealed class Stream<out A> {
         }
     }
 
+    /**
+     * p.382 9-18
+     */
+    fun dropWhile(p: (A) -> Boolean): Stream<A> = dropWhile(this, p)
+
+    /**
+     * p.383 9-19
+     */
+    fun exists(p: (A) -> Boolean): Boolean = exists(this, p)
+
+    /**
+     * p.384 9-20
+     */
+    fun <B> foldRight(z: Lazy<B>, f: (A) -> (Lazy<B>) -> B): B = when (this) {
+        is Empty -> z()
+        is Cons -> f(hd())(Lazy { tl().foldRight(z, f) })
+    }
+
+    /**
+     * p.385 9-21
+     */
+    fun takeWhileViaFoldRight(p: (A)-> Boolean): Stream<A> = foldRight(Lazy{Empty}){ a -> { acc: Lazy<Stream<A>> -> if(p(a)) cons(Lazy{a}, acc) else Empty}}
+
     private object Empty : Stream<Nothing>() {
         override fun isEmpty(): Boolean = true
 
@@ -102,6 +125,21 @@ sealed class Stream<out A> {
         fun <A> iterate(seed: A, f: (A) -> A): Stream<A> = cons(Lazy { seed }, Lazy { iterate(f(seed), f) })
 
 
+        /**
+         * p.382 9-18
+         */
+        tailrec fun <A> dropWhile(stream: Stream<A>, p: (A) -> Boolean): Stream<A> = when (stream) {
+            is Empty -> stream
+            is Cons -> if (p(stream.hd())) dropWhile(stream.tl(), p) else stream
+        }
+
+        /**
+         * p.383 9-19
+         */
+        tailrec fun <A> exists(stream: Stream<A>, p: (A) -> Boolean): Boolean = when (stream) {
+            is Empty -> false
+            is Cons -> if (p(stream.hd())) true else exists(stream.tl(), p)
+        }
     }
 }
 
