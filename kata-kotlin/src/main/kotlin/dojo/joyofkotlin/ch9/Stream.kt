@@ -77,7 +77,37 @@ sealed class Stream<out A> {
     /**
      * p.385 9-21
      */
-    fun takeWhileViaFoldRight(p: (A)-> Boolean): Stream<A> = foldRight(Lazy{Empty}){ a -> { acc: Lazy<Stream<A>> -> if(p(a)) cons(Lazy{a}, acc) else Empty}}
+    fun takeWhileViaFoldRight(p: (A) -> Boolean): Stream<A> =
+        foldRight(Lazy { Empty }) { a -> { acc: Lazy<Stream<A>> -> if (p(a)) cons(Lazy { a }, acc) else Empty } }
+
+    /**
+     * p.386 9-22
+     */
+    fun headSafeViaFoldRight(): Result<A> = foldRight(Lazy { Result() }) { a -> { Result(a) } }
+
+    /**
+     * p.386 9-23
+     */
+    fun <B> map(f: (A) -> B): Stream<B> =
+        foldRight(Lazy { Empty }) { a -> { acc: Lazy<Stream<B>> -> cons(Lazy { f(a) }, acc) } }
+
+    /**
+     * p.387 9-24
+     */
+    fun filter(p: (A) -> Boolean): Stream<A> =
+        foldRight(Lazy { Empty }) { a -> { acc: Lazy<Stream<A>> -> if (p(a)) cons(Lazy { a }, acc) else acc() } }
+
+    /**
+     * p.387 9-25
+     */
+    fun append(stream2: Lazy<Stream<@UnsafeVariance A>>): Stream<A> =
+        foldRight(stream2) { a -> { acc -> cons(Lazy { a }, acc) } }
+
+    /**
+     * p.388 9-26
+     */
+    fun <B> flatMap(f: (A) -> Stream<B>): Stream<B> =
+        foldRight(Lazy { Empty }) { a -> { acc: Lazy<Stream<B>> -> f(a).append(acc) } }
 
     private object Empty : Stream<Nothing>() {
         override fun isEmpty(): Boolean = true
@@ -151,7 +181,10 @@ fun main() {
     println()
     test_14()
     println()
-    test_15()
+//    test_15()
+    println()
+    test_6_2()
+
 }
 
 private fun test_() {
@@ -188,4 +221,23 @@ private fun test_14() {
 fun test_15() {
     val s = Stream.from(0).dropAtMost(60000).takeAtMost(60000)
     println(s.toList())
+}
+
+
+private val f = {x: Int ->
+    val y = x *3
+    println("Mapping $x to $y")
+    y
+}
+
+private val p = {x: Int ->
+    println("Filtering $x")
+    x % 2 == 0
+}
+fun test_6_2(){
+    val list = List(1,2,3,4,5).map(f).filter(p).map(f)
+    println(list)
+    println()
+    val stream = Stream.from(1).takeAtMost(5).map(f).filter(p).map(f)
+    println(stream.toList())
 }
