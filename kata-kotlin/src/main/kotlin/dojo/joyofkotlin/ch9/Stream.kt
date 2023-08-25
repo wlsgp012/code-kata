@@ -98,6 +98,17 @@ sealed class Stream<out A> {
         foldRight(Lazy { Empty }) { a -> { acc: Lazy<Stream<A>> -> if (p(a)) cons(Lazy { a }, acc) else acc() } }
 
     /**
+     * p.393 9-30
+     */
+    fun filter2(p: (A) -> Boolean): Stream<A> =
+        dropWhile { x -> !p(x) }.let { stream ->
+            when (stream) {
+                is Empty -> stream
+                is Cons -> cons(stream.hd, Lazy { stream.tl().filter2(p) })
+            }
+        }
+
+    /**
      * p.387 9-25
      */
     fun append(stream2: Lazy<Stream<@UnsafeVariance A>>): Stream<A> =
@@ -108,6 +119,11 @@ sealed class Stream<out A> {
      */
     fun <B> flatMap(f: (A) -> Stream<B>): Stream<B> =
         foldRight(Lazy { Empty }) { a -> { acc: Lazy<Stream<B>> -> f(a).append(acc) } }
+
+    /**
+     * p.390 9-27
+     */
+    fun find(p: (A) -> Boolean): Result<A> = filter(p).head()
 
     private object Empty : Stream<Nothing>() {
         override fun isEmpty(): Boolean = true
@@ -170,9 +186,33 @@ sealed class Stream<out A> {
             is Empty -> false
             is Cons -> if (p(stream.hd())) true else exists(stream.tl(), p)
         }
+
+        /**
+         * p.391 9-29
+         */
+        fun <A, S> unfold(z: S, f: (S) -> Result<Pair<A, S>>): Stream<A> {
+//            return when (val a: Result<Pair<A, S>> = f(z)) {
+//                is Result.Empty -> invoke()
+//                is Result.Failure -> invoke()
+//                is Result.Success -> cons(Lazy(a.value::first), Lazy { unfold(a.value.second, f) })
+//            }
+            return f(z).map { a -> cons(Lazy(a::first), Lazy { unfold(a.second, f) }) }.getOrElse { Empty }
+        }
+
+        fun fromViaUnfold(i: Int): Stream<Int> = unfold(i) { Result.invoke(it to it + 1) }
     }
 }
 
+/**
+ * p.391 9-28
+ */
+fun fibo(): Stream<Int> {
+    return Stream.iterate(1 to 1) { (a, b) -> b to a + b }.map { (a, _) -> a }
+}
+
+fun fiboViaUnfold(): Stream<Int> {
+    return Stream.unfold(1 to 1) { (a, b) -> Result.invoke(a to (b to a + b)) }
+}
 
 fun main() {
     test_()
@@ -184,7 +224,10 @@ fun main() {
 //    test_15()
     println()
     test_6_2()
-
+    println()
+    test_28()
+    println()
+    test_29()
 }
 
 private fun test_() {
@@ -224,20 +267,30 @@ fun test_15() {
 }
 
 
-private val f = {x: Int ->
-    val y = x *3
+private val f = { x: Int ->
+    val y = x * 3
     println("Mapping $x to $y")
     y
 }
 
-private val p = {x: Int ->
+private val p = { x: Int ->
     println("Filtering $x")
     x % 2 == 0
 }
-fun test_6_2(){
-    val list = List(1,2,3,4,5).map(f).filter(p).map(f)
+
+fun test_6_2() {
+    val list = List(1, 2, 3, 4, 5).map(f).filter(p).map(f)
     println(list)
     println()
     val stream = Stream.from(1).takeAtMost(5).map(f).filter(p).map(f)
     println(stream.toList())
+}
+
+fun test_28() {
+    fibo().takeAtMost(10).toList().run(::println)
+    fiboViaUnfold().takeAtMost(10).toList().run(::println)
+}
+
+fun test_29() {
+    Stream.from(0).takeAtMost(30).toList().run(::println)
 }
