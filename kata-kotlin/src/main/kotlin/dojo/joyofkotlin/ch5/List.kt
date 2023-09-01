@@ -340,6 +340,23 @@ sealed class List<A> {
      */
     fun filter2(p: (A) -> Boolean): List<A> = flatMap { x -> if (p(x)) invoke(x) else invoke() }
 
+    /**
+     * p.485 12-1
+     */
+    fun forEach(ef: (A) -> Unit) {
+        tailrec fun process(list: List<A>, f: (A) -> Unit) {
+            when (list) {
+                is Empty -> {}
+                is Cons -> {
+                    f(list.head)
+                    process(list.tail, f)
+                }
+            }
+        }
+        process(this, ef)
+    }
+
+
     companion object {
         operator fun <A> invoke(vararg az: A): List<A> =
             az.foldRight(Nil as List<A>) { a: A, list: List<A> -> Cons(a, list) }
