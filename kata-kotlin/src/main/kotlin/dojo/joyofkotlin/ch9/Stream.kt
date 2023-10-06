@@ -200,6 +200,17 @@ sealed class Stream<out A> {
         }
 
         fun fromViaUnfold(i: Int): Stream<Int> = unfold(i) { Result.invoke(it to it + 1) }
+
+        /**
+         * p.503 12-8
+         */
+        fun <A> fill(n: Int, elem: Lazy<A>): Stream<A>{
+            tailrec fun <A> process(acc: Stream<A>, n: Int, elem: Lazy<A>): Stream<A> = when{
+                n <=0 -> acc
+                else -> process(Cons(elem, Lazy { acc }), n-1, elem)
+            }
+            return process(Empty, n, elem)
+        }
     }
 }
 
