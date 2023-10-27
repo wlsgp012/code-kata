@@ -33,14 +33,13 @@ class Manager(id: String, list: List<Int>, private val client: Actor<Result<List
         }
     }
 
-    internal inner class Behavior
-    internal constructor(
+    inner class Behavior(
         internal val workList: List<Int>,
-        internal val resultList: List<Int>
+        internal val resultList: List<Int>,
     ) : MessageProcessor<Int> {
         override fun process(
             message: Int,
-            sender: Result<Actor<Int>>
+            sender: Result<Actor<Int>>,
         ) {
             managerFunction(this@Manager)(this@Behavior)(message)
             sender.forEach(onSuccess = { a: Actor<Int> ->
@@ -57,8 +56,10 @@ class Manager(id: String, list: List<Int>, private val client: Actor<Result<List
     fun start() {
         onReceive(0, self())
         sequence(initial.map { this.initWorker(it) })
-            .forEach(onSuccess = { this.initWorkers(it) },
-                onFailure = { this.tellClientEmptyResult(it.message ?: "Unknown error") })
+            .forEach(
+                onSuccess = { this.initWorkers(it) },
+                onFailure = { this.tellClientEmptyResult(it.message ?: "Unknown error") },
+            )
     }
 
     private fun initWorker(t: Pair<Int, Int>): Result<() -> Unit> =
@@ -71,5 +72,4 @@ class Manager(id: String, list: List<Int>, private val client: Actor<Result<List
     private fun tellClientEmptyResult(string: String) {
         client.tell(Result.failure("$string caused by empty input list."))
     }
-
 }

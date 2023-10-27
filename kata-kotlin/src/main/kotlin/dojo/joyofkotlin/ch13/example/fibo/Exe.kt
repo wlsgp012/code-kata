@@ -7,7 +7,6 @@ import dojo.joyofkotlin.ch13.common.Result
 import dojo.joyofkotlin.ch13.common.range
 import kotlinx.coroutines.sync.Semaphore
 
-
 private val semaphore = Semaphore(1)
 private const val listLength = 20_000
 private val workers = Runtime.getRuntime().availableProcessors()
@@ -21,7 +20,7 @@ suspend fun main() {
     val client = object : AbstractActor<Result<List<Int>>>("Client") {
         override fun onReceive(
             message: Result<List<Int>>,
-            sender: Result<Actor<Result<List<Int>>>>
+            sender: Result<Actor<Result<List<Int>>>>,
         ) {
             message.forEach({ processSuccess(it) }, { processFailure(it.message ?: "Unknown error") })
             println("Total time: " + (System.currentTimeMillis() - startTime))
