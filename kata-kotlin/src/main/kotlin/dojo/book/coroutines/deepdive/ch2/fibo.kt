@@ -7,9 +7,10 @@ val fibonacci: Sequence<BigInteger> = sequence {
     var second = 1.toBigInteger()
     while (true) {
         yield(first)
-        val temp = first
-        first += second
-        second = temp
+
+        val temp = second
+        second += first
+        first = temp
     }
 }
 
