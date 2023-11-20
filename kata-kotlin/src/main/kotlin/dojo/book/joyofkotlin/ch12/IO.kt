@@ -1,9 +1,9 @@
 package dojo.book.joyofkotlin.ch12
 
-import dojo.joyofkotlin.ch5.List
-import dojo.joyofkotlin.ch7.newresult.Result
-import dojo.joyofkotlin.ch9.Lazy
-import dojo.joyofkotlin.ch9.Stream
+import dojo.book.joyofkotlin.ch5.List
+import dojo.book.joyofkotlin.ch7.newresult.Result
+import dojo.book.joyofkotlin.ch9.Lazy
+import dojo.book.joyofkotlin.ch9.Stream
 
 
 class IO<out A>(private val f: () -> A) {

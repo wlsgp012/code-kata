@@ -1,8 +1,8 @@
 package dojo.book.joyofkotlin.ch13.example.pingpong
 
-import dojo.joyofkotlin.ch13.AbstractActor
-import dojo.joyofkotlin.ch13.Actor
-import dojo.joyofkotlin.ch13.common.Result
+import dojo.book.joyofkotlin.ch13.AbstractActor
+import dojo.book.joyofkotlin.ch13.Actor
+import dojo.book.joyofkotlin.ch13.common.Result
 import kotlinx.coroutines.sync.Semaphore
 
 class Player(id: String, private val sound: String, private val referee: Actor<Int>) : AbstractActor<Int>(id) {

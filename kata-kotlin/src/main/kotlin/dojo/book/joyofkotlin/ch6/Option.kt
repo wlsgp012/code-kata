@@ -2,7 +2,7 @@ package dojo.book.joyofkotlin.ch6
 
 import kotlin.collections.List
 import kotlin.math.pow
-import dojo.joyofkotlin.ch5.List as FList
+import dojo.book.joyofkotlin.ch5.List as FList
 
 sealed class Option<out A> {
     abstract fun isEmpty(): Boolean

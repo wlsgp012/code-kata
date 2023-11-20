@@ -1,9 +1,9 @@
 package dojo.book.joyofkotlin.ch8
 
-import dojo.joyofkotlin.ch5.List
-import dojo.joyofkotlin.ch6.Option
-import dojo.joyofkotlin.ch7.newresult.Result
-import dojo.joyofkotlin.ch7.newresult.map2
+import dojo.book.joyofkotlin.ch5.List
+import dojo.book.joyofkotlin.ch6.Option
+import dojo.book.joyofkotlin.ch7.newresult.Result
+import dojo.book.joyofkotlin.ch7.newresult.map2
 
 /**
  * p.312 8-5

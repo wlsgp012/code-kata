@@ -1,8 +1,8 @@
 package dojo.book.joyofkotlin.ch13.example.fibo
 
-import dojo.joyofkotlin.ch13.AbstractActor
-import dojo.joyofkotlin.ch13.Actor
-import dojo.joyofkotlin.ch13.common.Result
+import dojo.book.joyofkotlin.ch13.AbstractActor
+import dojo.book.joyofkotlin.ch13.Actor
+import dojo.book.joyofkotlin.ch13.common.Result
 
 class Worker(id: String) : AbstractActor<Int>(id) {
     override fun onReceive(message: Int, sender: Result<Actor<Int>>) {

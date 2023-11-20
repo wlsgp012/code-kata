@@ -1,6 +1,6 @@
 package dojo.book.joyofkotlin.ch12
 
-import dojo.joyofkotlin.ch7.newresult.Result
+import dojo.book.joyofkotlin.ch7.newresult.Result
 import java.io.Closeable
 
 interface Input : Closeable {

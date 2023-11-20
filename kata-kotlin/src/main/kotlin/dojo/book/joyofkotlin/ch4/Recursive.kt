@@ -1,6 +1,6 @@
 package dojo.book.joyofkotlin.ch4
 
-import dojo.inaction.ch3.joinToString
+import dojo.book.inaction.ch3.joinToString
 import java.math.BigInteger
 import java.util.*
 import java.util.Collections.emptyList

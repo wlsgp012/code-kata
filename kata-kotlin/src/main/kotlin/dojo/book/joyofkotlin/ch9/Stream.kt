@@ -1,7 +1,7 @@
 package dojo.book.joyofkotlin.ch9
 
-import dojo.joyofkotlin.ch5.List
-import dojo.joyofkotlin.ch7.newresult.Result
+import dojo.book.joyofkotlin.ch5.List
+import dojo.book.joyofkotlin.ch7.newresult.Result
 import kotlin.random.Random
 
 sealed class Stream<out A> {

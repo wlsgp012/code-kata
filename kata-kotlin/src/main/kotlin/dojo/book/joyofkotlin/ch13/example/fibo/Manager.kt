@@ -1,11 +1,11 @@
 package dojo.book.joyofkotlin.ch13.example.fibo
 
-import dojo.joyofkotlin.ch13.AbstractActor
-import dojo.joyofkotlin.ch13.Actor
-import dojo.joyofkotlin.ch13.MessageProcessor
-import dojo.joyofkotlin.ch13.common.List
-import dojo.joyofkotlin.ch13.common.Result
-import dojo.joyofkotlin.ch13.common.sequence
+import dojo.book.joyofkotlin.ch13.AbstractActor
+import dojo.book.joyofkotlin.ch13.Actor
+import dojo.book.joyofkotlin.ch13.MessageProcessor
+import dojo.book.joyofkotlin.ch13.common.List
+import dojo.book.joyofkotlin.ch13.common.Result
+import dojo.book.joyofkotlin.ch13.common.sequence
 
 class Manager(id: String, list: List<Int>, private val client: Actor<Result<List<Int>>>, private val workers: Int) :
     AbstractActor<Int>(id) {

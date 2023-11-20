@@ -1,7 +1,7 @@
 package dojo.book.joyofkotlin.ch13.common
 
-import dojo.joyofkotlin.ch13.common.Stream.Companion.fill
-import dojo.joyofkotlin.ch13.common.Stream.Companion.iterate
+import dojo.book.joyofkotlin.ch13.common.Stream.Companion.fill
+import dojo.book.joyofkotlin.ch13.common.Stream.Companion.iterate
 import java.math.BigInteger
 
 

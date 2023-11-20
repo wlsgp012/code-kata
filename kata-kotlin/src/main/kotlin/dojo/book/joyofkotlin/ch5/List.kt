@@ -1,9 +1,9 @@
 package dojo.book.joyofkotlin.ch5
 
-import dojo.joyofkotlin.ch5.List.Companion.foldLeft
-import dojo.joyofkotlin.ch5.List.Cons
-import dojo.joyofkotlin.ch5.List.Empty
-import dojo.joyofkotlin.ch7.Result
+import dojo.book.joyofkotlin.ch5.List.Companion.foldLeft
+import dojo.book.joyofkotlin.ch5.List.Cons
+import dojo.book.joyofkotlin.ch5.List.Empty
+import dojo.book.joyofkotlin.ch7.Result
 import java.util.concurrent.ExecutorService
 
 sealed class List<A> {

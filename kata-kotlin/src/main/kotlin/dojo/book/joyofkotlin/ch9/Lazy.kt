@@ -1,10 +1,10 @@
 package dojo.book.joyofkotlin.ch9
 
-import dojo.joyofkotlin.ch5.List
-import dojo.joyofkotlin.ch7.newresult.Result
+import dojo.book.joyofkotlin.ch5.List
+import dojo.book.joyofkotlin.ch7.newresult.Result
 import kotlin.random.Random
-import dojo.joyofkotlin.ch8.sequence as sequenceR
-import dojo.joyofkotlin.ch8.traverse as traverseR
+import dojo.book.joyofkotlin.ch8.sequence as sequenceR
+import dojo.book.joyofkotlin.ch8.traverse as traverseR
 
 /**
  * p.355 9-1

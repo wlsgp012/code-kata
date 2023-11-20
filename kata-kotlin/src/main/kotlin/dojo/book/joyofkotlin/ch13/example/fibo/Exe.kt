@@ -1,10 +1,10 @@
 package dojo.book.joyofkotlin.ch13.example.fibo
 
-import dojo.joyofkotlin.ch13.AbstractActor
-import dojo.joyofkotlin.ch13.Actor
-import dojo.joyofkotlin.ch13.common.List
-import dojo.joyofkotlin.ch13.common.Result
-import dojo.joyofkotlin.ch13.common.range
+import dojo.book.joyofkotlin.ch13.AbstractActor
+import dojo.book.joyofkotlin.ch13.Actor
+import dojo.book.joyofkotlin.ch13.common.List
+import dojo.book.joyofkotlin.ch13.common.Result
+import dojo.book.joyofkotlin.ch13.common.range
 import kotlinx.coroutines.sync.Semaphore
 
 private val semaphore = Semaphore(1)

@@ -1,6 +1,6 @@
 package dojo.book.joyofkotlin.ch13
 
-import dojo.joyofkotlin.ch13.common.Result
+import dojo.book.joyofkotlin.ch13.common.Result
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.RejectedExecutionException
