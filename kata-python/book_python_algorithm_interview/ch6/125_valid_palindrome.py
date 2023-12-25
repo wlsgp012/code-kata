@@ -10,7 +10,7 @@ def refine_string(s: str):
     return [l for l in lowered if l.isalnum()]
 
 # in book
-def answear1(s: str) -> bool:
+def answer1(s: str) -> bool:
     strs = []
     for char in s:
         if char.isalnum():
@@ -21,7 +21,7 @@ def answear1(s: str) -> bool:
             return False
     return True
 
-def answear2(s: str) -> bool:
+def answer2(s: str) -> bool:
     strs: Deque = collections.deque()
     for char in s:
         if char.isalnum():
@@ -32,7 +32,7 @@ def answear2(s: str) -> bool:
             return False
     return True
 
-def answear3(s: str) -> bool:
+def answer3(s: str) -> bool:
     s = s.lower()
     s = re.sub('[^a-z0-9]','',s)
     return s == s[::-1]
