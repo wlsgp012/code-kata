@@ -4,7 +4,7 @@
 (def strs ["eat","tea","tan","ate","nat","bat"])
 
 (defn to-group [xs]
-  (vals (group-by (comp hash-set sort) xs)))
+  (vals (group-by sort xs)))
 
 (comment
   (to-group strs))
